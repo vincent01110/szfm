@@ -1,0 +1,3 @@
+# Áttekintés
+
+Az [Üzlet neve] elektronikai webshop a legújabb technológiai termékek széles választékát kínálja versenyképes áron. Felhasználók kategóriák, márkák és árak alapján kereshetnek és böngészhetnek termékeket. A vásárlóknek lehetőségük van termékeket a kosárba helyezni, módosítani és véglegesíteni a rendelést. A weboldal internet hozzáféréssel bárhonnan elérhető, modern, egyszerű felületet nyújt a vásárló számára.
