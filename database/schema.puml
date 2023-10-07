@@ -54,8 +54,31 @@ entity user{
   address: varchar(45)
   phone_number: varchar(15)
 }
-
-
+entity admin{
+  * id: int <<PK>>
+  --
+  * user_id: int
+}
+entity payment{
+  * id: int <<PK>>
+  --
+  * order_id: int
+  * method: int
+  * is_fulfilled: boolean
+  * created_at: timestamp(1)
+  * fulfilled_at: timestamp(1)
+}
+entity collection{
+  * id: int <<PK>>
+  --
+  * name: varchar(30)
+}
+entity collection_product{
+  * id: int <<PK>>
+  --
+  * collection_id: int
+  * product_id: int
+}
 
 product }|-- discount
 product ||--|| cart_item
@@ -64,4 +87,8 @@ order_items }|-- order_details
 order_details ||--|| user
 user ||--|| shopping_session
 cart_item }|-- shopping_session
+payment ||--|| order_details
+admin ||--|| user
+collection_product }|-- collection
+collection_product }|-- product
 @enduml
