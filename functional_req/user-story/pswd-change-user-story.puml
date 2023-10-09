@@ -1,0 +1,14 @@
+@startuml
+
+actor Katalin as Katalin
+rectangle ElektronikaiWeboldal {
+  Katalin --> (Bejelentkezés)
+  Katalin --> (Fiókbeállítások megnyitása)
+  Katalin --> (Jelszó változtatás kérése)
+  Katalin --> (Új jelszó megadása)
+  Katalin --> (Jelszó megerősítése)
+  Katalin --> (Jelszó változtatás megerősítése)
+  Katalin --> (Bejelentkezés az új jelszóval)
+}
+
+@enduml
