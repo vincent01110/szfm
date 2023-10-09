@@ -1,0 +1,17 @@
+@startuml
+
+actor User as "Andrea"
+
+User --> (Regisztráció) : Regisztráció
+User --> (Termék Kiválasztása) : Termék Kiválasztása
+User --> (Kosár Módosítása) : Kosár Módosítása
+User --> (Fizetés) : Fizetés
+User --> (Visszaigazolás) : Visszaigazolás
+
+(Regisztráció) --> (Adatok Kitöltése) : <<include>>
+(Termék Kiválasztása) --> (Termék Kosárba) : <<include>>
+(Kosár Módosítása) --> (Kosár Pénztárhoz) : <<include>>
+(Fizetés) --> (Rendelés Létrehozása) : <<include>>
+(Rendelés Létrehozása) --> (Visszaigazolás) : <<include>>
+
+@enduml
