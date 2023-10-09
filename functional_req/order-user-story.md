@@ -27,5 +27,3 @@
 9. **Sikeres rendelés:** Péter megtudja, hogy a rendelése sikeresen feldolgozásra került. Az alkalmazás nyomon követi a szállítást és értesíti, amikor a termék úton van.
 
 10. **Projekt kezdése:** Miután Péter megkapja a mikrovezérlőt, boldogan használja azt az elektronikai projektjéhez, és elégedett a webalkalmazás minőségével és kiszolgálásával.
-
-11. 
