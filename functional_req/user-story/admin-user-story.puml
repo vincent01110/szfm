@@ -1,0 +1,9 @@
+@startuml
+
+actor Admin as "Adminisztrátor"
+
+Admin -> (Új Termék Feltöltése) : "Új Termék Feltöltése"
+
+(Új Termék Feltöltése) --> (Adatok Kitöltése) : <<include>>
+
+@enduml
