@@ -13,5 +13,3 @@ rectangle ElektronikaiWebalkalmazás {
 }
 
 @enduml
-
-![order-use-case](use-case.png)
