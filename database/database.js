@@ -23,3 +23,18 @@ export async function getProductsByName(name){
     return result[0]
 }
 
+export async function getProductsByCategory(category){
+    const result = await pool.query(`SELECT * FROM product WHERE product.category LIKE "${category}"`);
+    return result[0]
+}
+
+export async function getDiscount(id){
+    const result = await pool.query(`SELECT * FROM discount WHERE id = ${id}`);
+    return result[0]
+}
+
+export async function getDiscountedProducts(){
+    const result = await pool.query(`SELECT * FROM product WHERE discount_id IS NOT null;`);
+    return result[0]
+}
+

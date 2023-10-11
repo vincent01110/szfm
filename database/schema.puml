@@ -6,7 +6,6 @@ entity product{
   * name: varchar(80)
   * price: int
   * discount_id: int
-  desc: mediumtext
   attribute: JSON
 }
 entity discount{
