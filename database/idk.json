@@ -1,16 +1,17 @@
 {
-    "Technikai specifikációk:": {
-        "Kijelző felbontása:": "480 x 480 pixel",
-        "Kijelző mérete:": "1.47 inch"
-    },
-    "Akkumulátor": {
-        "Kapacitás": "425 mAh"
-    },
-    "Egyéb jellemzők": {
-        "Fényképező": "Nincs",
-        "SIM foglalat": "Nincs",
-        "GPS": "Van",
-        "Vízálló": "Igen",
-        "Tömeg": "33 g"
-    }
+  "Képernyő:": {
+    "TV típusa": "LED",
+    "Képátló (cm)": "127 cm",
+    "Képátló (inch)" : "50 inch",
+    "Ívelt kijelző": "Nincs",
+    "Képarány": "16:9",
+    "HD felbontás": "Ultra HD (4K TV)",
+    "Felbontás": "3840 x 2160 pixel"
+  },
+  "Funkciók:": {
+    "HDMI-CEC támogatás": "Van",
+    "Böngésző": "Van",
+    "Operációs rendszer": "webOS"
+  }
+  
 }

@@ -1,4 +1,4 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts } from '../database/database.js'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts } from '../database/database.js'
 import express from "express"
 
 const app = express()
@@ -71,7 +71,19 @@ app.get('/getProductWithDiscount', async (req, res) => {
 app.get('/getDiscountedProducts', async (req, res) => {
     const products = await getDiscountedProducts()
     console.log(products)
-    res.send(products)
+    res.send(products);
+})
+
+app.get('/getCollection', async (req, res) => {
+    const id = req.query.id
+    const collection = await getCollection(id)
+    res.send(collection);
+})
+
+app.get('/getCollectionProducts', async (req, res) => {
+    const id = req.query.id
+    const products = await getCollectionProducts(id)
+    res.send(products);
 })
 
 
