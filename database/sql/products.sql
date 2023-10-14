@@ -44,3 +44,9 @@ SELECT * FROM product;
 --    image = ''
 -- WHERE id = 48;
 
+
+SELECT * FROM user;
+
+
+INSERT INTO admin (user_id) VALUES (1), (2), (4);
+SELECT * FROM admin;

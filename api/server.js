@@ -1,4 +1,4 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn } from '../database/database.js'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail } from '../database/database.js'
 import express from "express"
 import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.js'
 
@@ -175,24 +175,65 @@ app.get('/order/:id', async (req, res) => {
 
 
 app.post('/signup', async (req, res) => {
-    try{
-        const { email, password, firstName, lastName} = req.body
+    try {
+        const { email, password, firstName, lastName } = req.body
         const hash = await hashPassword(password)
         await addUser(email, hash, firstName, lastName)
         res.status(201).send(`${email} signed up!`)
-    } catch(error){
+    } catch (error) {
         res.status(500).send(error)
     }
 })
 
 app.get('/signin', async (req, res) => {
-    try{
+    try {
         const { email, password } = req.body
         const hash = await canSignIn(email)
         const answ = await isPwCorrect(password, hash)
         res.send(answ)
+    } catch (error) {
 
-    }catch(error) {
+    }
+})
+
+app.put('/user/password', async (req, res) => {
+    try{
+        //get email from currently signed in user!!!!!!
+        const { email, password } = req.body
+        const hash = await hashPassword(password)
+        const result = await changePassword(email, hash)
+        res.send(result)
+    } catch (error){
+
+    }
+})
+
+app.put('/user/contact', async (req, res) => {
+    try{
+        const { email, zipCode, city, address, phoneNumber } = req.body 
+        const result = await updateContact(email, zipCode, city, address, phoneNumber)
+        res.send(result)
+    } catch (error) {
+
+    }
+})
+
+app.get('/user/:id', async (req, res) => {
+    try{
+        const id = req.params.id
+        const user = await getUserbyId(id)
+        res.send(user)
+    } catch (error){
+
+    }
+})
+
+app.get('/user', async (req, res) => {
+    try{
+        const { email } = req.body
+        const user = await getUserbyEmail(email)
+        res.send(user)
+    } catch (error){
 
     }
 })

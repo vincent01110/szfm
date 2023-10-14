@@ -90,13 +90,35 @@ export async function addUser(email, password, firstName, lastName) {
     return result[0]
 }
 
-export async function getUser(email){
+export async function getUserbyEmail(email){
     const result = await pool.query(`SELECT email, first_name, last_name, zip_code, city, address, phone_number FROM user WHERE email LIKE ?`, [email])
+    return result[0][0]
+}
+
+export async function getUserbyId(id){
+    const result = await pool.query(`SELECT email, first_name, last_name, zip_code, city, address, phone_number FROM user WHERE id = ?`, [id])
     return result[0][0]
 }
 
 export async function canSignIn(email){
     const result = await pool.query(`SELECT password FROM user WHERE email LIKE ?`, [email])
     return result[0][0].password
+}
+
+export async function changePassword(email, password){
+    const result = await pool.query(`UPDATE user SET password = ? WHERE email LIKE ?`, [password, email])
+    return result[0]
+}
+
+export async function updateContact(email, zipCode, city, address, phoneNumber){
+    const result = await pool.query(`
+    UPDATE user 
+    SET 
+        zip_code = ?,
+        city = ?,
+        address = ?,
+        phone_number = ?
+    WHERE email LIKE ?`, [zipCode, city, address, phoneNumber, email])
+    return result[0]
 }
 
