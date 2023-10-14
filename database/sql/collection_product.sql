@@ -15,8 +15,11 @@ VALUES
     (9, 2, 3),
     (10, 2, 11),
     (11, 2, 12);
+
+SELECT * FROM collection_product;    
     
     
     
-    
-SELECT product.*, collection.name FROM product, collection_product, collection WHERE product.id = collection_product.product_id AND collection_product.collection_id = collection.id;
+-- SELECT product.*, collection.name FROM product, collection_product, collection WHERE product.id = collection_product.product_id AND collection_product.collection_id = collection.id AND collection.id = 3;
+
+
