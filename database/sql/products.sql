@@ -35,3 +35,12 @@ VALUES
     
 SELECT * FROM product;
 
+-- UPDATE product
+-- SET
+-- 	  name = 'idk',
+--    category = 'tv',
+--    price = '12000',
+-- 	  discount_id = '4',
+--    image = ''
+-- WHERE id = 48;
+

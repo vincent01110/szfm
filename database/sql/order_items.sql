@@ -13,3 +13,5 @@ VALUES
     
     
 SELECT * FROM order_items;
+
+SELECT * FROM user;

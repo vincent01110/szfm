@@ -1,6 +1,6 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct } from '../database/database.js'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn } from '../database/database.js'
 import express from "express"
-import { calculateDiscount } from './calculation.js'
+import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.js'
 
 const app = express()
 
@@ -172,6 +172,31 @@ app.get('/order/:id', async (req, res) => {
     }
 
 })
+
+
+app.post('/signup', async (req, res) => {
+    try{
+        const { email, password, firstName, lastName} = req.body
+        const hash = await hashPassword(password)
+        await addUser(email, hash, firstName, lastName)
+        res.status(201).send(`${email} signed up!`)
+    } catch(error){
+        res.status(500).send(error)
+    }
+})
+
+app.get('/signin', async (req, res) => {
+    try{
+        const { email, password } = req.body
+        const hash = await canSignIn(email)
+        const answ = await isPwCorrect(password, hash)
+        res.send(answ)
+
+    }catch(error) {
+
+    }
+})
+
 
 
 
