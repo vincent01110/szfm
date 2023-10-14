@@ -1,7 +1,10 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId } from '../database/database.js'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct } from '../database/database.js'
 import express from "express"
+import { calculateDiscount } from './calculation.js'
 
 const app = express()
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -9,87 +12,165 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/getProducts', async (req, res) => {
-    const products = await getProducts()
-    res.send(products)
-})
-
-app.get('/getProduct/:id', async (req, res) => {
-    const id = req.params.id
-    const products = await getProductById(id)
-    res.send(products)
-})
-
-app.get('/getProductsByName', async (req, res) => {
-    const name = req.query.name
-    const products = await getProductsByName(name)
-    res.send(products)
-})
-
-app.get('/getProductsByCategory', async (req, res) => {
-    const category = req.query.category
-    const products = await getProductsByCategory(category)
-    res.send(products)
-})
-
-app.get('/getDiscountById', async (req, res) => {
-    const id = req.query.id
-    const discount = await getDiscount(id)
-    res.send(discount)
-})
-
 //Calculates a every products discounted price
 //QueryParams: none
-app.get('/getDiscountedPrices', async (req, res) => {
-    const products = await getProducts()
-    let l = []
-    for(let i = 0; i < products.length; i++){
-        if(products[i].discount_id != null){
-            const discount = await getDiscount(products[i].discount_id)
-            const x = Math.floor((products[i].price * (1 - (discount[0].percentage /100))))
-            l.push({id: products[i].id, price: products[i].price, discountedPrice: x })
-        } else {
-            l.push({id: products[i].id, price: products[i].price})
+app.get('/products', async (req, res) => {
+    try {
+        const products = await getProducts()
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
         }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
     }
-    res.send(l)
 })
+
+app.post('/products', async (req, res) => {
+    const request = req.body
+    const product = await addProduct(request.category, request.name, request.price, request.discount_id, request.attribute, request.image)
+    product['discountedPrice'] = calculateDiscount(product, await getDiscount(product.discount_id))
+    res.send(product)
+})
+
+
 
 //Calculates a certain products discounted price
-//QueryParams: id
-app.get('/getProductWithDiscount', async (req, res) => {
-    const productId = req.query.id
-    const reqProduct = await getProductById(productId)
-    if(reqProduct[0].discount_id){
-        const discount = await getDiscount(reqProduct[0].discount_id)
-        const discountedPrice =  Math.floor((reqProduct[0].price * (1 - (discount[0].percentage /100))))
-        reqProduct[0]['discountedPrice'] = discountedPrice
+//Params: id
+app.get('/products/:id', async (req, res) => {
+    try {
+        const productId = req.params.id
+        const reqProduct = await getProductById(productId)
+        reqProduct[0]['discountedPrice'] = calculateDiscount(reqProduct[0], await getDiscount(reqProduct[0].discount_id))
+        res.send(reqProduct[0])
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
     }
-    res.send(reqProduct[0])
 })
 
-app.get('/getDiscountedProducts', async (req, res) => {
-    const products = await getDiscountedProducts()
-    console.log(products)
-    res.send(products);
+app.put('/products/:id', async (req, res) => {
+    const id = req.params.id
+    const { category, name, price, discount_id, image } = req.query
+    const product = await getProductById(id).then((result) => {
+        if (category) result[0].category = category;
+        if (name) result[0].name = name;
+        if (price) result[0].price = price;
+        if (discount_id) result[0].discount_id = discount_id;
+        if (image) result[0].image = image;
+        return result[0]
+    }).then(async (result) => {
+        const query = await updateProduct(id, result.category, result.name, result.price, result.discount_id, result.image)
+        return result
+    })
+    res.send(product)
 })
 
-app.get('/getCollection', async (req, res) => {
-    const id = req.query.id
-    const collection = await getCollection(id)
-    res.send(collection);
+app.get('/products/name/:name', async (req, res) => {
+    try {
+        const name = req.params.name
+        const products = await getProductsByName(name)
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
+        }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
 })
 
-app.get('/getCollectionProducts', async (req, res) => {
-    const id = req.query.id
-    const products = await getCollectionProducts(id)
-    res.send(products);
+app.get('/products/category/:category', async (req, res) => {
+    try {
+        const category = req.params.category
+        const products = await getProductsByCategory(category)
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
+        }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
 })
 
-app.get('/getOrderProductsByOrderId', async (req, res) => {
-    const id = req.query.id
-    const products = await getOrderProductsByOrderId(id)
-    res.send(products);
+app.get('/discounts', async (req, res) => {
+    try {
+        const discount = await getDiscounts()
+        res.send(discount)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+})
+
+app.get('/discounts/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const discount = await getDiscount(id)
+        res.send(discount)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+})
+
+
+
+app.get('/sale', async (req, res) => {
+    try {
+        const products = await getDiscountedProducts()
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
+        }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+})
+
+app.get('/collection', async (req, res) => {
+    try {
+        const id = req.query.id
+        const collection = await getCollection(id)
+        res.send(collection);
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+})
+
+app.get('/collection/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const products = await getCollectionProducts(id)
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
+        }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+})
+
+app.get('/order/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const products = await getOrderProductsByOrderId(id)
+        let l = []
+        for (let i = 0; i < products.length; i++) {
+            products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
+            l.push(products[i])
+        }
+        res.send(l)
+    } catch (err) {
+        res.status(500).send(`Internal Server Error: ${err}`)
+    }
+
 })
 
 

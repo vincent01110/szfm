@@ -19,12 +19,18 @@ export async function getProductById(id){
 }
 
 export async function getProductsByName(name){
-    const result = await pool.query(`SELECT * FROM product WHERE product.name LIKE "%${name}%"`);
+    const formatedName = '%' + name + '%'; 
+    const result = await pool.query(`SELECT * FROM product WHERE product.name LIKE ?`, [formatedName]);
     return result[0]
 }
 
 export async function getProductsByCategory(category){
-    const result = await pool.query(`SELECT * FROM product WHERE product.category LIKE "${category}"`);
+    const result = await pool.query(`SELECT * FROM product WHERE product.category LIKE ?`, [category]);
+    return result[0]
+}
+
+export async function getDiscounts(){
+    const result = await pool.query(`SELECT * FROM discount`);
     return result[0]
 }
 
@@ -51,5 +57,26 @@ export async function getCollectionProducts(id){
 
 export async function getOrderProductsByOrderId(id){
     const result = await pool.query(`SELECT product.* FROM order_items, product WHERE order_items.product_id = product.id AND order_items.order_id = ${id};`);
+    return result[0]
+}
+
+export async function addProduct(category, name, price, discount_id, attribute, image){
+    const result = await pool.query(`INSERT INTO product (category, name, price, discount_id, attribute, image)
+    VALUES (?, ?, ?, ?, ?, ?);`, [category, name, price, discount_id, JSON.stringify(attribute), image]).then(async (res) => {
+        return await getProductById(+res[0].insertId)
+    });
+    return result[0]
+}
+
+export async function updateProduct(id, category, name, price, discount_id, image){
+    const result = await pool.query(`
+    UPDATE product
+    SET
+        name = ?,
+        category = ?,
+        price = ?,
+        discount_id = ?,
+        image = ?
+    WHERE id = ?;`, [name, category, price, discount_id, image, id])
     return result[0]
 }
