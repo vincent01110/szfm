@@ -1,6 +1,7 @@
 import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail } from '../database/database.js'
 import express from "express"
 import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.js'
+import { writeToLogFile } from './logger.js'
 
 const app = express()
 
@@ -24,7 +25,8 @@ app.get('/products', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/products -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -36,7 +38,6 @@ app.post('/products', async (req, res) => {
 })
 
 
-
 //Calculates a certain products discounted price
 //Params: id
 app.get('/products/:id', async (req, res) => {
@@ -46,7 +47,8 @@ app.get('/products/:id', async (req, res) => {
         reqProduct[0]['discountedPrice'] = calculateDiscount(reqProduct[0], await getDiscount(reqProduct[0].discount_id))
         res.send(reqProduct[0])
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/products/:id -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -78,7 +80,8 @@ app.get('/products/name/:name', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/products/name/:name -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -93,7 +96,8 @@ app.get('/products/category/:category', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/products/category/:category -> Error fetching: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -102,7 +106,8 @@ app.get('/discounts', async (req, res) => {
         const discount = await getDiscounts()
         res.send(discount)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/discounts -> Error fetching: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -112,7 +117,8 @@ app.get('/discounts/:id', async (req, res) => {
         const discount = await getDiscount(id)
         res.send(discount)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/discounts/:id -> Error fetching: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -128,7 +134,8 @@ app.get('/sale', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/sale -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -138,7 +145,8 @@ app.get('/collection', async (req, res) => {
         const collection = await getCollection(id)
         res.send(collection);
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/collection -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -153,7 +161,8 @@ app.get('/collection/:id', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/collection/:id -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -168,7 +177,8 @@ app.get('/order/:id', async (req, res) => {
         }
         res.send(l)
     } catch (err) {
-        res.status(500).send(`Internal Server Error: ${err}`)
+        writeToLogFile(`/order/:id -> Error: ${err}`);
+        res.status(500).send('Internal Server Error');
     }
 
 })
@@ -181,7 +191,8 @@ app.post('/signup', async (req, res) => {
         await addUser(email, hash, firstName, lastName)
         res.status(201).send(`${email} signed up!`)
     } catch (error) {
-        res.status(500).send(error)
+        writeToLogFile(`/signup -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
@@ -192,49 +203,54 @@ app.get('/signin', async (req, res) => {
         const answ = await isPwCorrect(password, hash)
         res.send(answ)
     } catch (error) {
-
+        writeToLogFile(`/signin -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
 app.put('/user/password', async (req, res) => {
-    try{
+    try {
         //get email from currently signed in user!!!!!!
         const { email, password } = req.body
         const hash = await hashPassword(password)
         const result = await changePassword(email, hash)
         res.send(result)
-    } catch (error){
-
+    } catch (error) {
+        writeToLogFile(`/user/password -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
 app.put('/user/contact', async (req, res) => {
-    try{
-        const { email, zipCode, city, address, phoneNumber } = req.body 
+    try {
+        const { email, zipCode, city, address, phoneNumber } = req.body
         const result = await updateContact(email, zipCode, city, address, phoneNumber)
         res.send(result)
     } catch (error) {
-
+        writeToLogFile(`/user/contact -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
 app.get('/user/:id', async (req, res) => {
-    try{
+    try {
         const id = req.params.id
         const user = await getUserbyId(id)
         res.send(user)
-    } catch (error){
-
+    } catch (error) {
+        writeToLogFile(`/user/:id -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
 app.get('/user', async (req, res) => {
-    try{
+    try {
         const { email } = req.body
         const user = await getUserbyEmail(email)
         res.send(user)
-    } catch (error){
-
+    } catch (error) {
+        writeToLogFile(`/user -> Error: ${error}`);
+        res.status(500).send('Internal Server Error');
     }
 })
 
