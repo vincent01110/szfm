@@ -40,3 +40,18 @@ Andrea sikeresen regisztrált a weboldalon és bejelentkezett az új fiókjába.
 Andrea képes volt megtalálni és kiválasztani a kívánt terméket, majd sikeresen leadta a rendelést.
 A rendszer pontos és megbízható visszaigazolást küldött Andrea e-mail címére a rendeléséről.
 Ez a user story bemutatja, hogyan regisztrált egy új felhasználó a weboldalon, majd sikeresen megrendelte a kívánt terméket. Ez a folyamat a felhasználói regisztráció és a termék megrendelés fontos lépéseit tartalmazza.
+
+
+Visszakövethetőség: 
+
+| User Story                                        | Kapcsolódó Táblák      |
+| ------------------------------------------------- | --------------------- |
+| Új Felhasználó Regisztrálása                       | user                  |
+| Név: Andrea teljes neve                            | user (first_name, last_name) |
+| E-mail cím: Andrea érvényes e-mail címe             | user (email)             |
+| Jelszó: Biztonságos jelszó, amit később használ majd a bejelentkezéshez | user (password)     |
+| Cím: Andrea szállítási címe                         | user (address)           |
+| A rendszer ellenőrzi az adatokat, és ha minden rendben van, létrehozza Andrea fiókját | user (id, username) |
+| Andrea böngészi az elektronikai termékek kínálatát, és megtalálja a legújabb terméket, amit szeretne megrendelni | product |
+| Andrea kiválasztja a kívánt terméket, és hozzáadja a kosarához | cart_item (user_id, product_id) |
+| Andrea megadja a fizetési információkat, például hitelkártyaszámot vagy más fizetési mód adatait, majd elküldi a rendelést | payment, order_details, order_items |

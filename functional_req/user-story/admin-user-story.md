@@ -35,3 +35,5 @@ A termék adatainak (név, leírás, kategória, ár, készletmennyiség) helyes
 A feltöltött képek jól láthatóak és megfelelő minőségűek kell legyenek.
 Az adminisztrátor képes ellenőrizni és szerkeszteni az újonnan feltöltött termék adatait, ha szükséges.
 Ezzel a módosított user storyval Zsolt könnyen és hatékonyan tudja feltölteni az új elektronikai termékeket a weboldalra, hogy az ügyfelek mindig friss és vonzó kínálattal találkozhassanak.
+
+## Ehhez a user storyhoz a Product tábla tartozik.
