@@ -122,3 +122,9 @@ export async function updateContact(email, zipCode, city, address, phoneNumber){
     return result[0]
 }
 
+
+export async function isAdmin(email){
+    const result = await pool.query(`SELECT count(email) FROM user, admin WHERE user.id = admin.user_id AND user.email LIKE ? GROUP BY email;`, [email])
+    return result[0][0]
+}
+

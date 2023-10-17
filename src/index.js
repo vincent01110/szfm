@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { MemoryRouter } from 'react-router';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from 'react-auth-kit';
+import Admin from './pages/Admin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
+    <AuthProvider authType={"cookie"} authName={"_auth"} cookieDomain={window.location.hostname} cookieSecure={false} >
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

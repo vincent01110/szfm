@@ -1,11 +1,18 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail } from '../database/database.js'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail, isAdmin } from './database.mjs'
 import express from "express"
-import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.js'
-import { writeToLogFile } from './logger.js'
+import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.mjs'
+import { writeToLogFile } from './logger.mjs'
+import jsonwebtoken from 'jsonwebtoken'
+import cors from "cors"
+
 
 const app = express()
 
 app.use(express.json())
+app.use(cors({
+    origin: "http://localhost:3000"
+}))
+
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -196,12 +203,17 @@ app.post('/signup', async (req, res) => {
     }
 })
 
-app.get('/signin', async (req, res) => {
+app.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body
         const hash = await canSignIn(email)
         const answ = await isPwCorrect(password, hash)
-        res.send(answ)
+        const jwtToken = jsonwebtoken.sign({email: email}, "SUPER_SECRET_KEY")
+        if(answ){
+            res.json({email: email, token: jwtToken})
+        } else {
+            res.status(400).send("Error")
+        }
     } catch (error) {
         writeToLogFile(`/signin -> Error: ${error}`);
         res.status(500).send('Internal Server Error');
@@ -254,6 +266,15 @@ app.get('/user', async (req, res) => {
     }
 })
 
+app.get('/user/admin', async (req, res) => {
+    const email = req.body
+    const answ = await isAdmin(email)
+    if(answ){
+        res.status(200)
+    } else {
+        res.status(400)
+    }
+})
 
 
 
