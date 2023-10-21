@@ -20,8 +20,9 @@ app.get('/', (req, res) => {
     })
 })
 
-//Calculates a every products discounted price
-//QueryParams: none
+/**
+ * Calculates a every products discounted price
+ */
 app.get('/products', async (req, res) => {
     try {
         const products = await getProducts()
@@ -37,6 +38,9 @@ app.get('/products', async (req, res) => {
     }
 })
 
+/**
+ * 
+ */
 app.post('/products', async (req, res) => {
     const request = req.body
     const product = await addProduct(request.category, request.name, request.price, request.discount_id, request.attribute, request.image)
@@ -191,7 +195,7 @@ app.get('/order/:id', async (req, res) => {
 })
 
 
-app.post('/signup', async (req, res) => {
+app.post('/user/signup', async (req, res) => {
     try {
         const { email, password, firstName, lastName } = req.body
         const hash = await hashPassword(password)
@@ -203,14 +207,14 @@ app.post('/signup', async (req, res) => {
     }
 })
 
-app.post('/signin', async (req, res) => {
+app.post('/user/signin', async (req, res) => {
     try {
         const { email, password } = req.body
         const hash = await canSignIn(email)
         const answ = await isPwCorrect(password, hash)
-        const jwtToken = jsonwebtoken.sign({email: email}, "SUPER_SECRET_KEY")
-        if(answ){
-            res.json({email: email, token: jwtToken})
+        const jwtToken = jsonwebtoken.sign({ email: email }, "SUPER_SECRET_KEY")
+        if (answ) {
+            res.json({ email: email, token: jwtToken })
         } else {
             res.status(400).send("Error")
         }
@@ -266,13 +270,37 @@ app.get('/user', async (req, res) => {
     }
 })
 
-app.get('/user/admin', async (req, res) => {
+app.post('/user/admin', async (req, res) => {
     const email = req.body
-    const answ = await isAdmin(email)
-    if(answ){
-        res.status(200)
+    const answ = await isAdmin(email.email)
+    if (answ) {
+        res.status(200).send(answ)
     } else {
-        res.status(400)
+        res.status(400).send(answ)
+    }
+})
+
+app.post('/user/admin/signin', async (req, res) => {
+    try {
+        const email = req.body.email
+        const password = req.body.password
+        const hash = await canSignIn(email)
+        if (!(hash === undefined)) {
+            const answ = await isPwCorrect(password, hash.password)
+            const admin = await isAdmin(email)
+            if (admin.isAdmin == 1 && hash.password && answ) {
+                const jwtToken = jsonwebtoken.sign({ email: email }, "SUPER_SECRET_KEY")
+                res.json({ email: email, token: jwtToken })
+            } else {
+                res.status(401).send("Login credentials are not correct.")
+            }
+        } else {
+            res.status(401).send("User not found")
+        }
+
+    } catch (error) {
+        writeToLogFile(`/user/admin/signin -> Error: ${error}`);
+        res.status(500).send("Internal server error-server: " + error)
     }
 })
 

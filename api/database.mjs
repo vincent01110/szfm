@@ -111,7 +111,7 @@ export async function getUserbyId(id){
 
 export async function canSignIn(email){
     const result = await pool.query(`SELECT password FROM user WHERE email LIKE ?`, [email])
-    return result[0][0].password
+    return result[0][0]
 }
 
 export async function changePassword(email, password){
@@ -133,7 +133,7 @@ export async function updateContact(email, zipCode, city, address, phoneNumber){
 
 
 export async function isAdmin(email){
-    const result = await pool.query(`SELECT count(email) FROM user, admin WHERE user.id = admin.user_id AND user.email LIKE ? GROUP BY email;`, [email])
+    const result = await pool.query(`SELECT count(email) as isAdmin FROM user, admin WHERE user.id = admin.user_id AND user.email LIKE ? GROUP BY email;`, [email])
     return result[0][0]
 }
 

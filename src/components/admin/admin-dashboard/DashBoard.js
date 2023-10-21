@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { useSignOut } from "react-auth-kit";
 import axios from "axios";
+import ProductTable from "./product-table/ProductTable";
 
 const DashBoard = () => {
     const signout = useSignOut()
@@ -21,16 +22,15 @@ const DashBoard = () => {
             }}).then((response) => {
                 setProducts(response.data)
             })
-            console.log(products)
         } catch (error) {
             console.error('API request error:', error);
         }
     }, [])
 
-
     return <div>
         "DashBoard"
         <button onClick={logoutHandler}>LogOut</button>
+        <ProductTable products={products} />
         
     </div>
 }

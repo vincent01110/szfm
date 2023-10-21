@@ -1,48 +1,83 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useSignIn } from 'react-auth-kit';
+import style from './AdminSignIn.module.css';
 
 
 const AdminSignIn = (props) => {
     const navigate = useNavigate()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
     const signIn = useSignIn()
+    const [errorMsg, setErrorMsg] = useState()
+    const [email, dispatchEmail] = useReducer((state, action) => {
+        if (action.type === 'USER_INPUT') {
+            return { value: action.val, isValid: action.val.includes('@') }
+        }
+        return { value: '', isValid: false }
+    }, { value: '', isValid: null })
+    const [password, dispatchPassword] = useReducer((state, action) => {
+        if (action.type === 'USER_INPUT') {
+            return { value: action.val, isValid: action.val.trim().length >= 6 }
+        }
+        return { value: '', isValid: false }
+    }, { value: '', isValid: null })
+
+
 
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        let data = JSON.stringify({
-            "email": email,
-            "password": password
-        });
-        try {
-            // Make an API call to your authentication endpoint (replace with your actual API URL)
-            const response = await axios.post('http://localhost:9090/signin', data, {headers: { 
-                'Content-Type': 'application/json'
-            }})
-            
-            signIn({
-                token: response.data.token,
-                expiresIn: 60,
-                tokenType: "Bearer",
-                authState: {email: email}
-            })
-            navigate("/admin/dashboard")
-            
-
-        } catch (error) {
-            console.error('API request error:', error);
+        if (email.isValid && password.isValid) {
+            let data = JSON.stringify({
+                email: email.value,
+                password: password.value
+            });
+            console.log(data);
+            try {
+                // Make an API call to your authentication endpoint (replace with your actual API URL)
+                const response = await axios.post('http://localhost:9090/user/admin/signin', data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                console.log(response);
+                signIn({
+                    token: response.data.token,
+                    expiresIn: 60,
+                    tokenType: "Bearer",
+                    authState: { email: email }
+                })
+                navigate("/admin/dashboard")
+            } catch (err) {
+                if (err.response.status === 401) {
+                    setErrorMsg(err.response.data)
+                } else {
+                    console.log(err);
+                }
+            }
+        } else {
+            console.log('Credentials are not valid');
         }
     }
 
-    return <div>
-        <form onSubmit={submitHandler}>
-            <input type="email" onChange={(e) => { setEmail(e.target.value) }} />
-            <input type="password" onChange={(e) => { setPassword(e.target.value) }} />
-            <button>Log In</button>
-        </form>
+    const emailChangeHandler = (e) => {
+        dispatchEmail({ val: e.target.value, type: 'USER_INPUT' })
+    }
+
+    const passwordChangeHandler = (e) => {
+        dispatchPassword({ val: e.target.value, type: 'USER_INPUT' })
+    }
+
+
+    return <div className={style.container}>
+        <div className={style.formDiv}>
+            <form onSubmit={submitHandler}>
+                <input type="email" placeholder="Email..." onChange={emailChangeHandler} className={`${style.inputField} ${email.isValid === false ? style.invalid : ''}`} />
+                <input type="password" placeholder="Password..." onChange={passwordChangeHandler} className={`${style.inputField} ${password.isValid === false ? style.invalid : ''}`} />
+                <button type="submit" className={style.submitButton}>Log In</button>
+                {errorMsg && <div className={style.error}>{errorMsg}</div>}
+            </form>
+        </div>
     </div>
 }
 
