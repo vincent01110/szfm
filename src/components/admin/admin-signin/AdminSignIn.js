@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { useSignIn } from 'react-auth-kit';
 import style from './AdminSignIn.module.css';
+import Card from "../../ui/Card";
+import Button from "../../ui/Button";
 
 
 const AdminSignIn = (props) => {
@@ -45,8 +47,9 @@ const AdminSignIn = (props) => {
                     token: response.data.token,
                     expiresIn: 60,
                     tokenType: "Bearer",
-                    authState: { email: email }
+                    authState: { email: email.value }
                 })
+                localStorage.setItem('email', email.value)
                 navigate("/admin/dashboard")
             } catch (err) {
                 if (err.response.status === 401) {
@@ -70,14 +73,14 @@ const AdminSignIn = (props) => {
 
 
     return <div className={style.container}>
-        <div className={style.formDiv}>
+        <Card className={style.formDiv}>
             <form onSubmit={submitHandler}>
                 <input type="email" placeholder="Email..." onChange={emailChangeHandler} className={`${style.inputField} ${email.isValid === false ? style.invalid : ''}`} />
                 <input type="password" placeholder="Password..." onChange={passwordChangeHandler} className={`${style.inputField} ${password.isValid === false ? style.invalid : ''}`} />
-                <button type="submit" className={style.submitButton}>Log In</button>
+                <Button type="submit" className={style.submitButton}>Log In</Button>
                 {errorMsg && <div className={style.error}>{errorMsg}</div>}
             </form>
-        </div>
+        </Card>
     </div>
 }
 

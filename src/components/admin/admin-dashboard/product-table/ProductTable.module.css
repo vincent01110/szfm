@@ -1,0 +1,17 @@
+.container{
+    max-width: 90%;
+    width: 60%;
+}
+
+.row:focus{
+    background-color: #ffb90860;
+    color: #FFBA08;
+    font-weight: bolder;
+}
+.row:hover{
+    background-color: #ffb90860;
+}
+
+.cell{
+    padding: 0.6rem;
+}

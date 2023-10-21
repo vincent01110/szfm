@@ -1,6 +1,7 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
 import AdminSignIn from "./components/admin/admin-signin/AdminSignIn";
+import AdminItem from './pages/AdminItem';
 import DashBoard from "./components/admin/admin-dashboard/DashBoard";
 import { RequireAuth } from "react-auth-kit";
 import { Navigate } from 'react-router-dom';
@@ -15,6 +16,10 @@ function App() {
         <Route path="dashboard" element={<RequireAuth loginPath='/admin/signin'>
             <DashBoard />
         </RequireAuth>} />
+        <Route path="dashboard/add" element={<RequireAuth loginPath='/admin/signin'>
+            <AdminItem />
+        </RequireAuth>} />
+
     </Route>
     </Routes>
   );

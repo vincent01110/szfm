@@ -3,16 +3,30 @@ import { useNavigate, useLocation } from "react-router";
 import { useSignOut } from "react-auth-kit";
 import axios from "axios";
 import ProductTable from "./product-table/ProductTable";
+import Buttons from "./buttons/Buttons";
 
 const DashBoard = () => {
     const signout = useSignOut()
     const navigate = useNavigate()
     const [products, setProducts] = useState()
+    const [selectedProduct, setSelectedProduct] = useState()
 
     const logoutHandler = () => {
         signout()
+        localStorage.removeItem('email')
         navigate("/admin/signin")
     }
+
+    const selectChangeHandler = (p) => {
+        setSelectedProduct(p)
+        console.log(p);
+    }
+
+    const addHandler = () => {
+        navigate("/admin/dashboard/add")
+    }
+
+    
 
     useEffect(() => {
         try {
@@ -28,9 +42,10 @@ const DashBoard = () => {
     }, [])
 
     return <div>
-        "DashBoard"
+        {localStorage.getItem('email')}
         <button onClick={logoutHandler}>LogOut</button>
-        <ProductTable products={products} />
+        <Buttons onAdd={addHandler} />
+        <ProductTable products={products} selectChangeHandler={selectChangeHandler} selectedProduct={selectedProduct} />
         
     </div>
 }

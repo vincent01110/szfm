@@ -1,0 +1,17 @@
+.buttons{
+    width: 60%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.add, .delete, .edit{
+    width: 5rem;
+    height: 3rem;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.add{
+    font-weight: bolder;
+}
