@@ -68,3 +68,28 @@
     margin: auto;
     color: white;
 }
+
+
+[class~="p-toast"]{
+    background-color: rgb(255, 236, 236);
+    border-radius: 5px;
+
+}
+
+[class~="p-toast-icon-close"]{
+    margin: 1rem;
+}
+[class~="p-toast-message-icon"]{
+    width: 2rem;
+    height: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    color: red;
+    
+}
+
+
+
+

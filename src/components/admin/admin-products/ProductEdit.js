@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Card from "../../ui/Card";
 import style from './ProductAdd.module.css'
 import { Dropdown } from "primereact/dropdown";
@@ -8,6 +8,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
 import Button from "../../ui/Button";
 import { useNavigate, useParams } from "react-router";
+import { Toast } from "primereact/toast";
 
 const categories = [
     { name: 'Phone', code: 'phone' },
@@ -27,6 +28,7 @@ const ProductEdit = () => {
     const [selectedDiscount, setSelectedDiscount] = useState()
     const [errorMsg, setErrorMsg] = useState()
     const { id } = useParams()
+    const toast = useRef(null)
 
 
 
@@ -119,13 +121,32 @@ const ProductEdit = () => {
         try {
             JSON.parse(attribute.trim())
         } catch (err) {
-            setErrorMsg("Attribute is not a valid JSON")
+            toast.current.show({ severity: 'error', summary: 'JSON error', detail: 'Attribute field is not a valid JSON', life: 3000 });
+            return false;
+        }
+        const includesCategory = categories.find(elem => elem === category)
+        if(!includesCategory){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Please select a category', life: 3000 });
+            return false;
+        }
+        if(name.trim().length === 0 ){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Name cannot be empty', life: 3000 });
+            return false;
+        }
+        if(price === 0){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Price cannot be 0', life: 3000 });
+            return false;
+        }
+        const includesDiscount = discounts.find(elem => elem === selectedDiscount)
+        if(!includesDiscount){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Please select a discount', life: 3000 });
             return false;
         }
         return true;
     }
 
     return <Card className={style.formCard}>
+        <Toast ref={toast}/>
         <h1>Add Product</h1>
         <form onSubmit={onEdit}>
             <Dropdown data-pr-classname={style.item} panelClassName={`${style.items}`} className={style.dropdown} value={category} onChange={(e) => setCategory(e.value)} options={categories} optionLabel="name"

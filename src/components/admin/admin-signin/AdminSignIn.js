@@ -34,7 +34,6 @@ const AdminSignIn = (props) => {
                 email: email.value,
                 password: password.value
             });
-            console.log(data);
             try {
                 // Make an API call to your authentication endpoint (replace with your actual API URL)
                 const response = await axios.post('http://localhost:9090/user/admin/signin', data, {
@@ -42,7 +41,6 @@ const AdminSignIn = (props) => {
                         'Content-Type': 'application/json'
                     }
                 })
-                console.log(response);
                 signIn({
                     token: response.data.token,
                     expiresIn: 60,

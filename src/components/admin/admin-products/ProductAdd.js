@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer, useState, useEffect, useRef } from "react";
 import Card from "../../ui/Card";
 import style from './ProductAdd.module.css'
 import { Dropdown } from "primereact/dropdown";
@@ -8,6 +8,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router";
+import { Toast } from "primereact/toast";
 
 const categories = [
     { name: 'Phone', code: 'phone' },
@@ -25,7 +26,7 @@ const ProductAdd = () => {
     const [attribute, setAttribute] = useState('')
     const [discounts, setDiscounts] = useState([])
     const [selectedDiscount, setSelectedDiscount] = useState()
-    const [errorMsg, setErrorMsg] = useState()
+    const toast = useRef(null)
 
 
     useEffect(() => {
@@ -71,6 +72,7 @@ const ProductAdd = () => {
                 })
             } catch(err){
                 console.error("API request error: " + err)
+                toast.current.show({ severity: 'error', summary: 'API error', detail: 'Error connecting to database', life: 3000 });
             }
         } else {
 
@@ -85,13 +87,33 @@ const ProductAdd = () => {
         try {
             JSON.parse(attribute.trim())
         } catch (err) {
-            setErrorMsg("Attribute is not a valid JSON")
+            toast.current.show({ severity: 'error', summary: 'JSON error', detail: 'Attribute field is not a valid JSON', life: 3000 });
+            return false;
+        }
+        
+        const includesCategory = categories.find(elem => elem === category)
+        if(!includesCategory){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Please select a category', life: 3000 });
+            return false;
+        }
+        if(name.trim().length === 0 ){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Name cannot be empty', life: 3000 });
+            return false;
+        }
+        if(price === 0){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Price cannot be 0', life: 3000 });
+            return false;
+        }
+        const includesDiscount = discounts.find(elem => elem === selectedDiscount)
+        if(!includesDiscount){
+            toast.current.show({ severity: 'error', summary: 'Form error', detail: 'Please select a discount', life: 3000 });
             return false;
         }
         return true;
     }
 
     return <Card className={style.formCard}>
+        <Toast ref={toast}/>
         <h1>Add Product</h1>
         <form onSubmit={onAdd}>
             <Dropdown data-pr-classname={style.item} panelClassName={`${style.items}`} className={style.dropdown} value={category} onChange={(e) => setCategory(e.value)} options={categories} optionLabel="name"
@@ -100,7 +122,6 @@ const ProductAdd = () => {
             <InputNumber placeholder="Price..." value={price} onValueChange={(e) => setPrice(e.value)} suffix=" Ft" inputClassName={style.inputNumber} />
             <InputTextarea autoResize placeholder="Attributes (Please provide valid JSON)" value={attribute} onChange={(e) => setAttribute(e.target.value)} rows={5} cols={30} className={`${style.inputText} ${style.textArea}`} /><br />
             {discounts.length > 1 && <Dropdown data-pr-classname={style.item} panelClassName={style.items} className={style.dropdown} value={selectedDiscount} onChange={(e) => setSelectedDiscount(e.value)} options={discounts} optionLabel="name" placeholder="Discounts" />}<br />
-            {errorMsg && <div className={style.error}>{errorMsg}</div>}
             <Button type="submit" className={style.addButton}>Add</Button>
             <Button onClick={onCancel}>Cancel</Button>
         </form>

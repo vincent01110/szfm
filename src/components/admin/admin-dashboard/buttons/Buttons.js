@@ -12,8 +12,8 @@ const Buttons = (props) => {
         props.onAdd()
     }
 
-    const acceptDelete = () => {
-        toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+    const accept = () => {
+        toast.current.show({ severity: 'info', summary: 'Deleted', detail: 'You have deleted product id:' + props.selectedProduct.id, life: 3000 });
         props.onDelete()
     };
 
@@ -30,7 +30,7 @@ const Buttons = (props) => {
                 message: `Do you want to delete product id:${props.selectedProduct.id}?`,
                 acceptClassName: 'delete',
                 className: 'popup',
-                acceptDelete,
+                accept,
                 reject
             });
         }
