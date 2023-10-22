@@ -1,12 +1,12 @@
 import React, { useReducer, useState, useEffect } from "react";
-import Card from "../components/ui/Card";
-import style from './AdminItem.module.css';
+import Card from "../../ui/Card";
+import style from './ProductAdd.module.css'
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
-import Button from "../components/ui/Button";
+import Button from "../../ui/Button";
 import { useNavigate } from "react-router";
 
 const categories = [
@@ -17,7 +17,7 @@ const categories = [
     { name: 'Tablet', code: 'tablet' }
 ]
 
-const AdminItem = () => {
+const ProductAdd = () => {
     const navigate = useNavigate()
     const [category, setCategory] = useState()
     const [name, setName] = useState('')
@@ -107,4 +107,4 @@ const AdminItem = () => {
     </Card>
 }
 
-export default AdminItem;
+export default ProductAdd;

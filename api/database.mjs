@@ -137,3 +137,9 @@ export async function isAdmin(email){
     return result[0][0]
 }
 
+export async function deleteProduct(id){
+    const result = await pool.query('DELETE FROM product WHERE id = ?', [id])
+    return result[0]
+}
+
+

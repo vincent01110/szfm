@@ -74,6 +74,7 @@ const AdminSignIn = (props) => {
 
     return <div className={style.container}>
         <Card className={style.formDiv}>
+            <h1>Admin</h1>
             <form onSubmit={submitHandler}>
                 <input type="email" placeholder="Email..." onChange={emailChangeHandler} className={`${style.inputField} ${email.isValid === false ? style.invalid : ''}`} />
                 <input type="password" placeholder="Password..." onChange={passwordChangeHandler} className={`${style.inputField} ${password.isValid === false ? style.invalid : ''}`} />

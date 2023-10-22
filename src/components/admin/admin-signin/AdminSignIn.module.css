@@ -14,6 +14,11 @@
     font-size: large;
 }
 
+.formDiv > h1{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 
 .inputField {
     padding: 0.5rem;

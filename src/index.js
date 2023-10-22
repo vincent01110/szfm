@@ -4,9 +4,7 @@ import './index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import { BrowserRouter } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from 'react-auth-kit';
-import Admin from './pages/Admin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

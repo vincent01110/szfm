@@ -26,6 +26,25 @@ const DashBoard = () => {
         navigate("/admin/dashboard/add")
     }
 
+    const deleteHandler = async () => {
+        try{
+            axios.delete(`http://localhost:9090/products/${selectedProduct.id}`, {headers: { 
+                'Content-Type': 'application/json'
+            }}).then(() => {
+                let index = products.indexOf(selectedProduct)
+                let temp = [...products]
+                temp.splice(index, 1)
+                setProducts(temp)
+            })
+        } catch(err){
+            console.error(err);
+        }
+    }
+
+    const editHandler = () => {
+        navigate('/admin/dashboard/edit/' + selectedProduct.id)
+    }
+
     
 
     useEffect(() => {
@@ -44,7 +63,7 @@ const DashBoard = () => {
     return <div>
         {localStorage.getItem('email')}
         <button onClick={logoutHandler}>LogOut</button>
-        <Buttons onAdd={addHandler} />
+        <Buttons onAdd={addHandler} onDelete={deleteHandler} onEdit={editHandler} selectedProduct={selectedProduct} />
         <ProductTable products={products} selectChangeHandler={selectChangeHandler} selectedProduct={selectedProduct} />
         
     </div>

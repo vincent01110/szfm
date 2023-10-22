@@ -15,3 +15,26 @@
 .add{
     font-weight: bolder;
 }
+
+.delete{
+    background-color: #D00000;
+}
+
+.edit{
+    background-color: #E85D04;
+}
+
+.delete:hover{
+    background-color: #cc4646;
+}
+
+.edit:hover{
+    background-color: #de8248;
+}
+
+
+
+.popup > [class~="p-confirm-popup"]{
+    background-color: rgb(255, 83, 83);
+    color: red;
+}

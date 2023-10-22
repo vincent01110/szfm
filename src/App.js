@@ -1,7 +1,8 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
 import AdminSignIn from "./components/admin/admin-signin/AdminSignIn";
-import AdminItem from './pages/AdminItem';
+import ProductAdd from './components/admin/admin-products/ProductAdd';
+import ProductEdit from './components/admin/admin-products/ProductEdit';
 import DashBoard from "./components/admin/admin-dashboard/DashBoard";
 import { RequireAuth } from "react-auth-kit";
 import { Navigate } from 'react-router-dom';
@@ -17,7 +18,10 @@ function App() {
             <DashBoard />
         </RequireAuth>} />
         <Route path="dashboard/add" element={<RequireAuth loginPath='/admin/signin'>
-            <AdminItem />
+            <ProductAdd />
+        </RequireAuth>} />
+        <Route path="dashboard/edit/:id" element={<RequireAuth loginPath='/admin/signin'>
+            <ProductEdit />
         </RequireAuth>} />
 
     </Route>

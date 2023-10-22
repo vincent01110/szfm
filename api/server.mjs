@@ -1,4 +1,4 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail, isAdmin } from './database.mjs'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail, isAdmin, deleteProduct } from './database.mjs'
 import express from "express"
 import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.mjs'
 import { writeToLogFile } from './logger.mjs'
@@ -45,7 +45,7 @@ app.post('/products', async (req, res) => {
     const request = req.body
     const product = await addProduct(request.category, request.name, request.price, request.discount_id, request.attribute, request.image)
     product['discountedPrice'] = calculateDiscount(product, await getDiscount(product.discount_id))
-    res.send(product)
+    res.status(201).send(product)
 })
 
 
@@ -110,6 +110,17 @@ app.get('/products/category/:category', async (req, res) => {
         writeToLogFile(`/products/category/:category -> Error fetching: ${err}`);
         res.status(500).send('Internal Server Error');
     }
+})
+
+app.delete('/products/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const response = await deleteProduct(id)
+        res.send(response)
+    } catch (err) {
+        res.status(500).send(err)
+    }
+
 })
 
 app.get('/discounts', async (req, res) => {
@@ -303,6 +314,7 @@ app.post('/user/admin/signin', async (req, res) => {
         res.status(500).send("Internal server error-server: " + error)
     }
 })
+
 
 
 
