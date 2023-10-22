@@ -70,7 +70,7 @@ app.put('/products/:id', async (req, res) => {
         if (category) result[0].category = category;
         if (name) result[0].name = name;
         if (price) result[0].price = price;
-        if (discount_id) result[0].discount_id = discount_id;
+        if (discount_id !== undefined) result[0].discount_id = discount_id;
         if (image) result[0].image = image;
         return result[0]
     }).then(async (result) => {

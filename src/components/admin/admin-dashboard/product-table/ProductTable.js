@@ -17,7 +17,10 @@ const ProductTable = props => {
     
 
     return <Card className={style.container}>
-        <DataTable cellClassName={style.cell} rowClassName={style.row} selectionMode="single" selection={props.selectedProduct} onSelectionChange={(e) => props.selectChangeHandler(e.value)} dataKey="id" removableSort={true} value={props.products} tableStyle={{ minWidth: '50rem' }}>
+        <DataTable paginator paginatorClassName={style.paginator} rows={10} cellClassName={style.cell} rowClassName={style.row} 
+        paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        selectionMode="single" selection={props.selectedProduct} onSelectionChange={(e) => props.selectChangeHandler(e.value)} 
+        dataKey="id" removableSort={true} value={props.products} tableStyle={{ minWidth: '50rem' }}>
             {columns.map((col, i) => (
                 <Column key={col.field} sortable field={col.field} header={col.header} />
             ))}

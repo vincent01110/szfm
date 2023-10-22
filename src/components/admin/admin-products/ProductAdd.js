@@ -57,7 +57,7 @@ const ProductAdd = () => {
                 name: name,
                 attribute: JSON.parse(attribute),
                 price: price,
-                discount_id: selectedDiscount.code === 'none' ? '' : String(selectedDiscount.code),
+                discount_id: selectedDiscount.code === 'none' ? null : selectedDiscount.code,
                 image: ""
             })
             console.log(data);

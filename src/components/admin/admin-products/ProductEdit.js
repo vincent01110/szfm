@@ -89,14 +89,14 @@ const ProductEdit = () => {
         e.preventDefault()
         const isValid = validateForm()
         if (isValid) {
-            const data = {
+            const data = JSON.stringify({
                 category: category.code,
                 name: name,
                 attribute: JSON.parse(attribute),
                 price: price,
-                discount_id: selectedDiscount.code === 'none' ? '' : String(selectedDiscount.code),
+                discount_id: selectedDiscount.code === 'none' ? null : +selectedDiscount.code,
                 image: ""
-            }
+            })
             try{
                 axios.put('http://localhost:9090/products/' + id, data, {
                     headers: {
