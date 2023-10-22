@@ -19,7 +19,6 @@ const DashBoard = () => {
 
     const selectChangeHandler = (p) => {
         setSelectedProduct(p)
-        console.log(p);
     }
 
     const addHandler = () => {
@@ -44,8 +43,6 @@ const DashBoard = () => {
     const editHandler = () => {
         navigate('/admin/dashboard/edit/' + selectedProduct.id)
     }
-
-    
 
     useEffect(() => {
         try {

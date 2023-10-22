@@ -29,6 +29,9 @@ const ProductEdit = () => {
     const { id } = useParams()
 
 
+
+
+
     useEffect(() => {
         try {
             // Make an API call to your authentication endpoint (replace with your actual API URL)
@@ -43,17 +46,71 @@ const ProductEdit = () => {
                     l.push({ name: `${element.id} - ${element.percentage}%`, code: `${element.id}` })
                 });
                 setDiscounts(l)
+                return l;
+            }).then((response) => {
+                fillFields(response)
             })
         } catch (error) {
             console.error('API request error:', error);
         }
-        console.log(id);
     }, [])
 
-    const onAdd = (e) => {
-        
+    const fillFields = (l) => {
+        try {
+            axios.get(`http://localhost:9090/products/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                categories.forEach((e) => {
+                    if (e.code === response.data.category) {
+                        setCategory(e)
+                        return;
+                    }
+                })
+                setName(response.data.name)
+                setPrice(response.data.price)
+                setAttribute(JSON.stringify(response.data.attribute))
+                l.forEach((e) => {
+                    if (e.code === String(response.data.discount_id)) {
+                        setSelectedDiscount(e)
+                        return;
+                    }
+                })
+            })
+        } catch (err) {
+            console.error('API request error:', err);
+        }
     }
 
+
+
+    const onEdit = (e) => {
+        e.preventDefault()
+        const isValid = validateForm()
+        if (isValid) {
+            const data = {
+                category: category.code,
+                name: name,
+                attribute: JSON.parse(attribute),
+                price: price,
+                discount_id: selectedDiscount.code === 'none' ? '' : String(selectedDiscount.code),
+                image: ""
+            }
+            try{
+                axios.put('http://localhost:9090/products/' + id, data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(() => {
+                    navigate('/admin/dashboard')
+                })
+            } catch(err){
+                console.error("API request error: " + err)
+            }
+        }
+        
+    }
     const onCancel = () => {
         navigate('/admin/dashboard')
     }
@@ -70,7 +127,7 @@ const ProductEdit = () => {
 
     return <Card className={style.formCard}>
         <h1>Add Product</h1>
-        <form onSubmit={onAdd}>
+        <form onSubmit={onEdit}>
             <Dropdown data-pr-classname={style.item} panelClassName={`${style.items}`} className={style.dropdown} value={category} onChange={(e) => setCategory(e.value)} options={categories} optionLabel="name"
                 placeholder="Category" /> <br />
             <InputText placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)} className={style.inputText} />

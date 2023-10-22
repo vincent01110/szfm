@@ -65,7 +65,7 @@ app.get('/products/:id', async (req, res) => {
 
 app.put('/products/:id', async (req, res) => {
     const id = req.params.id
-    const { category, name, price, discount_id, image } = req.query
+    const { category, name, price, discount_id, image } = req.body
     const product = await getProductById(id).then((result) => {
         if (category) result[0].category = category;
         if (name) result[0].name = name;
