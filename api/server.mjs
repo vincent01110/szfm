@@ -1,4 +1,4 @@
-import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail, isAdmin, deleteProduct } from './database.mjs'
+import { getProducts, getProductById, getProductsByName, getProductsByCategory, getDiscount, getDiscountedProducts, getCollection, getCollectionProducts, getOrderProductsByOrderId, getDiscounts, addProduct, updateProduct, addUser, canSignIn, changePassword, updateContact, getUserbyId, getUserbyEmail, isAdmin, deleteProduct, getCollections, getAllCollectionProducts } from './database.mjs'
 import express from "express"
 import { calculateDiscount, hashPassword, isPwCorrect } from './calculation.mjs'
 import { writeToLogFile } from './logger.mjs'
@@ -163,9 +163,8 @@ app.get('/sale', async (req, res) => {
 
 app.get('/collection', async (req, res) => {
     try {
-        const id = req.query.id
-        const collection = await getCollection(id)
-        res.send(collection);
+        const collections = await getAllCollectionProducts()
+        res.send(collections);
     } catch (err) {
         writeToLogFile(`/collection -> Error: ${err}`);
         res.status(500).send('Internal Server Error');
@@ -280,6 +279,7 @@ app.get('/user', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 })
+
 
 app.post('/user/admin', async (req, res) => {
     const email = req.body

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { useSignOut } from "react-auth-kit";
 import axios from "axios";
-import ProductTable from "./product-table/ProductTable";
-import Buttons from "./buttons/Buttons";
+import ProductTable from "../admin-products/product-table/ProductTable";
+import Buttons from "../admin-products/buttons/Buttons";
+import CollectionsTable from "../admin-collections/collections-table/CollectionsTable";
 
 const DashBoard = () => {
     const signout = useSignOut()
     const navigate = useNavigate()
     const [products, setProducts] = useState()
     const [selectedProduct, setSelectedProduct] = useState()
+    const [collections, setCollections] = useState([]);
+    const [expandedRows, setExpandedRows] = useState([]);
 
     const logoutHandler = () => {
         signout()
@@ -57,12 +60,26 @@ const DashBoard = () => {
         }
     }, [])
 
+    useEffect(() => {
+        try {
+            // Make an API call to your authentication endpoint (replace with your actual API URL)
+            axios.get('http://localhost:9090/collection', {headers: { 
+                'Content-Type': 'application/json'
+            }}).then((response) => {
+                setCollections(response.data)
+            })
+        } catch (error) {
+            console.error('API request error:', error);
+        }
+    }, [])
+
+
     return <div>
         {localStorage.getItem('email')}
         <button onClick={logoutHandler}>LogOut</button>
         <Buttons onAdd={addHandler} onDelete={deleteHandler} onEdit={editHandler} selectedProduct={selectedProduct} />
         <ProductTable products={products} selectChangeHandler={selectChangeHandler} selectedProduct={selectedProduct} />
-        
+        <CollectionsTable collections={collections} />
     </div>
 }
 
