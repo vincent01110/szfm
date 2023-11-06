@@ -10,12 +10,18 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Expected Outcome**: A komponens megfelelően renderelődik és tartalmazza a megfelelő szövegeket vagy elemeket.
 
 ## Test Results
-### Test Results
 
 | Date       | Component      | Test Case        | Outcome |
 |------------|----------------|------------------|---------|
 | 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 
 ## Issues and Observations
+**Issue: Collections-table**
+  - **Description**: Az egyik teszt vagy a tesztelt modul az import kulcsszót használja, amit nem támogat a Node.js a fájlokban, amik nem modulok.
+  - **Steps to Reproduce**: Próbáltam futtatni a Collections-table komponens tesztelését.
+  - **Severity**: Alacsony
 
 ## Improvements
+**Improvement for Collections-table:**
+  - **Description**: Node.js esetleges fájlt ES6 modulként beállítani.
+  - **Rationale**: Sikeres teszt kimenetel érdekében.
