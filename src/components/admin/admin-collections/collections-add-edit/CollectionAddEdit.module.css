@@ -1,0 +1,8 @@
+.container{
+    width: 60%;
+    margin-top: 1rem;
+}
+
+[class~="p-picklist-item"]:focus{
+    background-color: red;
+}

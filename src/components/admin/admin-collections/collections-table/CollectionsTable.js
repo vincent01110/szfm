@@ -16,11 +16,13 @@ const columns = [
 
 const CollectionsTable = props => {
     const [expandedRows, setExpandedRows] = useState([])
+    const [selectedColl, setSelectedColl] = useState()
 
     const headerTemplate = (data) => {
         return (
             <React.Fragment>
-                <span className={style.headerSpan}>{`${data.collection_id} - ${data.collection_name}`}</span>
+                <span className={style.headerSpan}>{`${data.collection_id} - ${data.collection_name}`}
+                <input type="radio" name="collection" id={data.collection_id}  onChange={() => {setSelectedColl(data.collection_id)}} /></span>
             </React.Fragment>
         );
     };
@@ -31,7 +33,7 @@ const CollectionsTable = props => {
                     sortMode="single" sortField="collection_id" sortOrder={1}
                     expandableRowGroups expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                     rowGroupHeaderTemplate={headerTemplate} tableStyle={{ minWidth: '50rem' }}
-                    tableClassName={style.table} selectionMode="single">
+                    tableClassName={style.table}>
                 <Column field="id" header="Id" className={style.collumn}></Column>
                 <Column field="category" header="Category" className={style.collumn}></Column>
                 <Column field="name" header="Name" className={style.collumn}></Column>

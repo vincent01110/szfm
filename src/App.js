@@ -6,6 +6,7 @@ import ProductEdit from './components/admin/admin-products/ProductEdit';
 import DashBoard from "./components/admin/admin-dashboard/DashBoard";
 import { RequireAuth } from "react-auth-kit";
 import { Navigate } from 'react-router-dom';
+import CollectionAdd from './components/admin/admin-collections/collections-add-edit/CollectionAdd';
 
 function App() {
   return (
@@ -19,11 +20,14 @@ function App() {
         <Route path="dashboard" element={<RequireAuth loginPath='/admin/signin'>
             <DashBoard />
         </RequireAuth>} />
-        <Route path="dashboard/add" element={<RequireAuth loginPath='/admin/signin'>
+        <Route path="dashboard/products/add" element={<RequireAuth loginPath='/admin/signin'>
             <ProductAdd />
         </RequireAuth>} />
-        <Route path="dashboard/edit/:id" element={<RequireAuth loginPath='/admin/signin'>
+        <Route path="dashboard/products/edit/:id" element={<RequireAuth loginPath='/admin/signin'>
             <ProductEdit />
+        </RequireAuth>} />
+        <Route path="dashboard/collections/add" element={<RequireAuth loginPath='/admin/signin'>
+            <CollectionAdd />
         </RequireAuth>} />
 
     </Route>

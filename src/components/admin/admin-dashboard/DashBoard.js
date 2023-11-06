@@ -25,7 +25,7 @@ const DashBoard = () => {
     }
 
     const addHandler = () => {
-        navigate("/admin/dashboard/add")
+        navigate("/admin/dashboard//products/add")
     }
 
     const deleteHandler = async () => {
@@ -44,7 +44,7 @@ const DashBoard = () => {
     }
 
     const editHandler = () => {
-        navigate('/admin/dashboard/edit/' + selectedProduct.id)
+        navigate('/admin/dashboard/products/edit/' + selectedProduct.id)
     }
 
     useEffect(() => {
