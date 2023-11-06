@@ -123,7 +123,7 @@ const ProductAdd = () => {
             <InputTextarea autoResize placeholder="Attributes (Please provide valid JSON)" value={attribute} onChange={(e) => setAttribute(e.target.value)} rows={5} cols={30} className={`${style.inputText} ${style.textArea}`} /><br />
             {discounts.length > 1 && <Dropdown data-pr-classname={style.item} panelClassName={style.items} className={style.dropdown} value={selectedDiscount} onChange={(e) => setSelectedDiscount(e.value)} options={discounts} optionLabel="name" placeholder="Discounts" />}<br />
             <Button type="submit" className={style.addButton}>Add</Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={onCancel} className={style.cancelButton}>Cancel</Button>
         </form>
     </Card>
 }

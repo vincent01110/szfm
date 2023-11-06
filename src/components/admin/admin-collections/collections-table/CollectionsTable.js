@@ -15,9 +15,28 @@ const columns = [
 ];
 
 const CollectionsTable = props => {
+    const [expandedRows, setExpandedRows] = useState([])
+
+    const headerTemplate = (data) => {
+        return (
+            <React.Fragment>
+                <span className={style.headerSpan}>{`${data.collection_id} - ${data.collection_name}`}</span>
+            </React.Fragment>
+        );
+    };
+
     
     return <Card className={style.container}>
-        
+        <DataTable value={props.collections} rowGroupMode="subheader" groupRowsBy="collection_name"
+                    sortMode="single" sortField="collection_id" sortOrder={1}
+                    expandableRowGroups expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+                    rowGroupHeaderTemplate={headerTemplate} tableStyle={{ minWidth: '50rem' }}
+                    tableClassName={style.table} selectionMode="single">
+                <Column field="id" header="Id" className={style.collumn}></Column>
+                <Column field="category" header="Category" className={style.collumn}></Column>
+                <Column field="name" header="Name" className={style.collumn}></Column>
+                <Column field="price" header="Price" className={style.collumn}></Column>
+            </DataTable>
     </Card>
 }
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import ProductTable from "../admin-products/product-table/ProductTable";
 import Buttons from "../admin-products/buttons/Buttons";
 import CollectionsTable from "../admin-collections/collections-table/CollectionsTable";
+import CollectionsToolbar from "../admin-collections/collections-toolbar/CollectionsToolbar";
 
 const DashBoard = () => {
     const signout = useSignOut()
@@ -12,7 +13,6 @@ const DashBoard = () => {
     const [products, setProducts] = useState()
     const [selectedProduct, setSelectedProduct] = useState()
     const [collections, setCollections] = useState([]);
-    const [expandedRows, setExpandedRows] = useState([]);
 
     const logoutHandler = () => {
         signout()
@@ -79,6 +79,7 @@ const DashBoard = () => {
         <button onClick={logoutHandler}>LogOut</button>
         <Buttons onAdd={addHandler} onDelete={deleteHandler} onEdit={editHandler} selectedProduct={selectedProduct} />
         <ProductTable products={products} selectChangeHandler={selectChangeHandler} selectedProduct={selectedProduct} />
+        <CollectionsToolbar />
         <CollectionsTable collections={collections} />
     </div>
 }

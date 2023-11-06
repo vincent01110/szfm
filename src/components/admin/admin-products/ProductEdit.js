@@ -157,7 +157,7 @@ const ProductEdit = () => {
             {discounts.length > 1 && <Dropdown data-pr-classname={style.item} panelClassName={style.items} className={style.dropdown} value={selectedDiscount} onChange={(e) => setSelectedDiscount(e.value)} options={discounts} optionLabel="name" placeholder="Discounts" />}<br />
             {errorMsg && <div className={style.error}>{errorMsg}</div>}
             <Button type="submit" className={style.addButton}>Add</Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={onCancel} className={style.cancelButton}>Cancel</Button>
         </form>
     </Card>
 }

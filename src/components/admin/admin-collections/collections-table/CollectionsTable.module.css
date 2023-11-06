@@ -2,4 +2,15 @@
     width: 60%;
     max-width: 90%;
     margin-top: 2rem;
+    font-size: larger;
+}
+
+[class~="p-rowgroup-header"]{
+    font-size: larger;
+}
+
+
+.collumn{
+    min-width: fit-content;
+    max-width: 25%;
 }

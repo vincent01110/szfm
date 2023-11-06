@@ -1,0 +1,34 @@
+.container{
+    width: 60%;
+    margin: 1rem auto;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.add, .delete, .edit{
+    width: 5rem;
+    height: 3rem;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.add{
+    font-weight: bolder;
+}
+
+.delete{
+    background-color: #D00000;
+}
+
+.edit{
+    background-color: #E85D04;
+}
+
+.delete:hover{
+    background-color: #cc4646;
+}
+
+.edit:hover{
+    background-color: #de8248;
+}

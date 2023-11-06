@@ -1,6 +1,7 @@
 .container{
     max-width: 90%;
     width: 60%;
+    min-height: 30rem;
 }
 
 .row:focus{
