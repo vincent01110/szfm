@@ -10,6 +10,11 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Expected Outcome**: A komponens megfelelően renderelődik és tartalmazza a megfelelő szövegeket vagy elemeket.
 
 ## Test Results
+### Test Results
+
+| Date       | Component      | Test Case        | Outcome |
+|------------|----------------|------------------|---------|
+| 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 
 ## Issues and Observations
 
