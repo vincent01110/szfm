@@ -79,7 +79,7 @@ const DashBoard = () => {
         <button onClick={logoutHandler}>LogOut</button>
         <Buttons onAdd={addHandler} onDelete={deleteHandler} onEdit={editHandler} selectedProduct={selectedProduct} />
         <ProductTable products={products} selectChangeHandler={selectChangeHandler} selectedProduct={selectedProduct} />
-        <CollectionsToolbar />
+        {/* <CollectionsToolbar /> */}
         <CollectionsTable collections={collections} />
     </div>
 }
