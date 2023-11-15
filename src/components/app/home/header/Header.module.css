@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    width: 100%;
+}
+
+.logo{
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    justify-self: flex-start;
+    cursor: pointer;
+}
+
+.user{
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}

@@ -1,13 +1,15 @@
 import React from "react";
-import SearchBar from "./header/search-bar/SearchBar";
+import Header from "./header/Header";
+import CategoriesCard from "./categories/CategoriesCard";
+
 
 
 const HomePage = () => {
 
 
-    return <div style={{display: "flex", width: "100%"}}>
-        
-        <SearchBar/>
+    return <div style={{display: "flex", width: "100%", flexWrap: "wrap"}}>
+        <Header/>
+        <CategoriesCard />
     </div>
 }
 
