@@ -1,0 +1,62 @@
+
+.suggestions{
+    display: none;
+    width: 30rem;
+    margin: auto;
+    background-color: white;
+    margin-top: 1rem;
+    padding: 1rem;
+    max-height: 20rem;
+    overflow-y: scroll;
+    border-radius: 10px;
+    
+}
+
+
+.suggestions::-webkit-scrollbar {
+    width: 12px;
+}
+
+.suggestions::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #FFBA08 0%, #FAA307 6.87%, #F48C06 14.91%, #E85D04 23.63%, #DC2F02 34.72%, #D00000 46.24%, #9D0208 58.37%, #6A040F 70.62%, #370617 82.21%, #03071E 89.7%);
+}
+
+.suggestions h3{
+    margin-top: 0;
+}
+
+.showSuggestions{
+    display: block;
+}
+
+.searchBar{
+    width: 30rem;
+    height: 2rem;
+    outline: transparent;
+    border: none;
+    text-indent: 1rem;
+    padding: 0.5rem;
+    border-radius: 10rem;
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    display: flex;
+    background-image: url('../../../../../assets/search-logo.svg');
+    background-size: 20px;
+    background-origin: content-box;
+    background-position: right center; 
+    background-repeat: no-repeat; 
+    padding-right: 1rem;
+}
+
+.searchBarDiv{
+    margin: auto;
+}
+

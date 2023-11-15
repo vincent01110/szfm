@@ -20,8 +20,8 @@ export async function getProductById(id) {
 }
 
 export async function getProductsByName(name) {
-    const formatedName = '%' + name + '%';
-    const result = await pool.query(`SELECT * FROM product WHERE product.name LIKE ?`, [formatedName]);
+    const formatedName = '%' + name.toLowerCase() + '%';
+    const result = await pool.query(`SELECT * FROM product WHERE lower(product.name) LIKE ?`, [formatedName]);
     return result[0]
 }
 

@@ -7,11 +7,12 @@ import DashBoard from "./components/admin/admin-dashboard/DashBoard";
 import { RequireAuth } from "react-auth-kit";
 import { Navigate } from 'react-router-dom';
 import CollectionAdd from './components/admin/admin-collections/collections-add-edit/CollectionAdd';
+import HomePage from './components/app/home/HomePage';
 
 function App() {
   return (
     <Routes>
-      <Route path="/">
+      <Route path="/" element={<HomePage/>}>
 
       </Route>
       <Route path="/admin">
