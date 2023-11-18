@@ -11,16 +11,17 @@ import HomePage from './components/app/home/HomePage';
 import Product from './components/app/product/Product';
 import Cart from './components/app/cart/Cart';
 import { CartProvider } from './context/CartContext';
+import Checkout from './components/app/checkout/Checkout';
 
 function App() {
   return (
     <CartProvider>
 
       <Routes>
-        <Route path="/" element={<HomePage />}>
-        </Route>
+        <Route path="/" element={<HomePage />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route path="/admin">
           <Route index element={<Navigate replace to="/admin/dashboard" />} />
           <Route path="signin" element={<AdminSignIn />} />

@@ -12,13 +12,22 @@ export const CartProvider = ({ children }) => {
     if(!result) setCartItems([...cartItems, item]);
   };
 
+  const hasItem = (item) => {
+    var result = cartItems.find(e => e.id === item.id)
+    if(result){
+        return true;
+    } else {
+        return false;
+    }
+  }
+
   const removeFromCart = (itemId) => {
     const updatedCart = cartItems.filter(item => item.id !== itemId);
     setCartItems(updatedCart);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, hasItem }}>
       {children}
     </CartContext.Provider>
   );

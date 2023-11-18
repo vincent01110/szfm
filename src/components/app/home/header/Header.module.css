@@ -13,9 +13,10 @@
     cursor: pointer;
 }
 
-.user{
+.icon{
     width: 3rem;
     height: 3rem;
+    cursor: pointer;
 }
 .userActionDiv{
     width: 10rem;

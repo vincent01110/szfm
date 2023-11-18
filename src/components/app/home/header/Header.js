@@ -5,12 +5,14 @@ import {ReactComponent as UserIcon} from '../../../../assets/user.svg';
 import { useNavigate } from 'react-router';
 import Card from '../../../ui/Card';
 import {ReactComponent as CartIcon} from '../../../../assets/cart.svg';
+import { useCart } from '../../../../context/CartContext';
 
 const logo = require('../../../../assets/webshop-logo.jfif')
 
 const Header = () => {
     const navigate = useNavigate()
-    
+    const cart = useCart()
+
     const goHome = () => {
         navigate('/')
     }
@@ -20,8 +22,9 @@ const Header = () => {
         <img src={logo} alt='Wild West Electronics' className={style.logo} onClick={goHome}/>
         <SearchBar />
         <Card className={style.userActionDiv}>
-            <CartIcon className={style.user} onClick={() => navigate('/cart')}/>
-            <UserIcon className={style.user}/>
+            <div>{cart.cartItems.length}</div>
+            <CartIcon className={style.icon} onClick={() => navigate('/cart')}/>
+            <UserIcon className={style.icon}/>
         </Card>
     </div> );
 }

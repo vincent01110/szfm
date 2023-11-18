@@ -30,3 +30,7 @@
 .cartButton{
     height: 3rem;
 }
+
+.cartButton:disabled{
+    background-color: grey;
+}

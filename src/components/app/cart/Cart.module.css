@@ -1,3 +1,13 @@
 .cart{
     width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkoutButton{
+    width: 60%;
+    margin: auto;
+    height: 3rem;
+    margin-top: 2rem;
+
 }
