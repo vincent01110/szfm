@@ -1,0 +1,22 @@
+.container{
+ width: 8rem;
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ height: 15rem;
+ text-align: center;
+}
+
+.container img{
+    width: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    padding: 0;
+}
+
+.container h2, .container h3{
+    font-size: medium;
+    width: 100%;
+    margin-bottom: 0.2rem;
+}

@@ -1,0 +1,8 @@
+.container {
+    width: 60%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-radius: 50px;
+    background: #03071E;
+    display: flex;
+}
