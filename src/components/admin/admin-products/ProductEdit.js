@@ -26,6 +26,7 @@ const ProductEdit = () => {
     const [attribute, setAttribute] = useState('')
     const [discounts, setDiscounts] = useState([])
     const [selectedDiscount, setSelectedDiscount] = useState()
+    const [img, setImg] = useState('')
     const [errorMsg, setErrorMsg] = useState()
     const { id } = useParams()
     const toast = useRef(null)
@@ -97,7 +98,7 @@ const ProductEdit = () => {
                 attribute: JSON.parse(attribute),
                 price: price,
                 discount_id: selectedDiscount.code === 'none' ? null : +selectedDiscount.code,
-                image: ""
+                image: img
             })
             try{
                 axios.put('http://localhost:9090/products/' + id, data, {
@@ -155,6 +156,7 @@ const ProductEdit = () => {
             <InputNumber placeholder="Price..." value={price} onValueChange={(e) => setPrice(e.value)} suffix=" Ft" inputClassName={style.inputNumber} />
             <InputTextarea autoResize placeholder="Attributes (Please provide valid JSON)" value={attribute} onChange={(e) => setAttribute(e.target.value)} rows={5} cols={30} className={`${style.inputText} ${style.textArea}`} /><br />
             {discounts.length > 1 && <Dropdown data-pr-classname={style.item} panelClassName={style.items} className={style.dropdown} value={selectedDiscount} onChange={(e) => setSelectedDiscount(e.value)} options={discounts} optionLabel="name" placeholder="Discounts" />}<br />
+            <InputText placeholder="Image URL..." value={img} onChange={(e) => setImg(e.target.value)} className={style.inputText} />
             {errorMsg && <div className={style.error}>{errorMsg}</div>}
             <Button type="submit" className={style.addButton}>Add</Button>
             <Button onClick={onCancel} className={style.cancelButton}>Cancel</Button>

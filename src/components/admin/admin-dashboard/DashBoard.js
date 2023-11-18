@@ -25,7 +25,7 @@ const DashBoard = () => {
     }
 
     const addHandler = () => {
-        navigate("/admin/dashboard//products/add")
+        navigate("/admin/dashboard/products/add")
     }
 
     const deleteHandler = async () => {
