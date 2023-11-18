@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./header/Header";
 import CategoriesCard from "./categories/CategoriesCard";
 import MostSearchedCard from "./most-searched/MostSearchedCard";
+import Footer from "./footer/Footer";
 
 
 
@@ -12,6 +13,7 @@ const HomePage = () => {
         <Header/>
         <CategoriesCard />
         <MostSearchedCard />
+        <Footer />
     </div>
 }
 

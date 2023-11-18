@@ -1,0 +1,23 @@
+.footer{
+    width: 70%;
+    background-color: transparent;
+    padding: 2rem;
+    color: white;
+    margin-top: 2rem;
+    display: flex;
+}
+
+.footer h1{
+    font-size: medium;
+}
+
+.footer h2{
+    font-size: small;
+    text-indent: 2rem;
+}
+
+.footer img{
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100%;
+}

@@ -8,12 +8,13 @@ import { RequireAuth } from "react-auth-kit";
 import { Navigate } from 'react-router-dom';
 import CollectionAdd from './components/admin/admin-collections/collections-add-edit/CollectionAdd';
 import HomePage from './components/app/home/HomePage';
+import Product from './components/app/product/Product';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>}>
-
+        <Route path="/product/:id" element={<Product />} />
       </Route>
       <Route path="/admin">
         <Route index element={<Navigate replace to="/admin/dashboard"/>} />
