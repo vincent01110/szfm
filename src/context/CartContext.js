@@ -21,13 +21,25 @@ export const CartProvider = ({ children }) => {
     }
   }
 
+  const getTotalPrice = () => {
+    let sum = 0
+    for(let e of cartItems){
+      if(e.discountedPrice){
+        sum += e.discountedPrice
+      } else {
+        sum += e.price
+      }
+    }
+    return sum
+  }
+
   const removeFromCart = (itemId) => {
     const updatedCart = cartItems.filter(item => item.id !== itemId);
     setCartItems(updatedCart);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, hasItem }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, hasItem, getTotalPrice }}>
       {children}
     </CartContext.Provider>
   );
