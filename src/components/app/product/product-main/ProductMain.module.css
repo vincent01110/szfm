@@ -21,3 +21,12 @@
 .spinnerDiv *{
     margin: auto;
 }
+
+.cart{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.cartButton{
+    height: 3rem;
+}

@@ -5,6 +5,7 @@ import MostSearchedCard from '../home/most-searched/MostSearchedCard';
 import Footer from '../home/footer/Footer';
 import ProductMain from './product-main/ProductMain';
 import axios from 'axios';
+import ProductDesc from './product-desc/ProductDesc';
 
 
 const Product = () => {
@@ -31,6 +32,7 @@ const Product = () => {
     return <div style={{ display: "flex", width: "100%", flexWrap: "wrap" }}>
         <Header />
         <ProductMain loading={loading} product={product} />
+        <ProductDesc loading={loading} desc={product.attribute} />
         <MostSearchedCard />
         <Footer />
     </div>

@@ -9,31 +9,37 @@ import { Navigate } from 'react-router-dom';
 import CollectionAdd from './components/admin/admin-collections/collections-add-edit/CollectionAdd';
 import HomePage from './components/app/home/HomePage';
 import Product from './components/app/product/Product';
+import Cart from './components/app/cart/Cart';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage/>}>
-      </Route>
-      <Route path="product/:id" element={<Product />} />
-      <Route path="/admin">
-        <Route index element={<Navigate replace to="/admin/dashboard"/>} />
-        <Route path="signin" element={<AdminSignIn />} />
-        <Route path="dashboard" element={<RequireAuth loginPath='/admin/signin'>
-            <DashBoard />
-        </RequireAuth>} />
-        <Route path="dashboard/products/add" element={<RequireAuth loginPath='/admin/signin'>
-            <ProductAdd />
-        </RequireAuth>} />
-        <Route path="dashboard/products/edit/:id" element={<RequireAuth loginPath='/admin/signin'>
-            <ProductEdit />
-        </RequireAuth>} />
-        <Route path="dashboard/collections/add" element={<RequireAuth loginPath='/admin/signin'>
-            <CollectionAdd />
-        </RequireAuth>} />
+    <CartProvider>
 
-    </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<HomePage />}>
+        </Route>
+        <Route path="product/:id" element={<Product />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="/admin">
+          <Route index element={<Navigate replace to="/admin/dashboard" />} />
+          <Route path="signin" element={<AdminSignIn />} />
+          <Route path="dashboard" element={<RequireAuth loginPath='/admin/signin'>
+            <DashBoard />
+          </RequireAuth>} />
+          <Route path="dashboard/products/add" element={<RequireAuth loginPath='/admin/signin'>
+            <ProductAdd />
+          </RequireAuth>} />
+          <Route path="dashboard/products/edit/:id" element={<RequireAuth loginPath='/admin/signin'>
+            <ProductEdit />
+          </RequireAuth>} />
+          <Route path="dashboard/collections/add" element={<RequireAuth loginPath='/admin/signin'>
+            <CollectionAdd />
+          </RequireAuth>} />
+
+        </Route>
+      </Routes>
+    </CartProvider>
   );
 }
 
