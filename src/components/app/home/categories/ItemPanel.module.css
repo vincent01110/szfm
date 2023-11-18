@@ -18,6 +18,7 @@
 .panel ul > li{
     margin-bottom: 1.5rem;
     width: 100%;
+    cursor: pointer;
 }
 
 

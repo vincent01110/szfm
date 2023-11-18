@@ -1,0 +1,23 @@
+.container{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+}
+
+.container img{
+    width: 20rem;
+}
+
+.info{
+    display: block;
+    padding-left: 1rem;
+}
+
+.spinnerDiv{
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+.spinnerDiv *{
+    margin: auto;
+}

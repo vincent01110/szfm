@@ -2,7 +2,16 @@ import React from "react";
 import style from './Card.module.css';
 
 const Card = (props) => {
-    return <div className={`${style.card} ${props.className}`}>
+
+    const handleClick = () => {
+        // Call the prop function if provided
+        if (props.onClick) {
+            props.onClick();
+        }
+    };
+
+
+    return <div className={`${style.card} ${props.className}`} onClick={handleClick}>
         {props.children}
     </div>
 }

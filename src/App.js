@@ -14,8 +14,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>}>
-        <Route path="/product/:id" element={<Product />} />
       </Route>
+      <Route path="product/:id" element={<Product />} />
       <Route path="/admin">
         <Route index element={<Navigate replace to="/admin/dashboard"/>} />
         <Route path="signin" element={<AdminSignIn />} />

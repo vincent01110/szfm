@@ -1,10 +1,17 @@
 .item{
     display: flex;
-    width: 100%;
+    width: 95%;
     align-items: center;
-    margin: 0;
+    margin-right: 0;
+    margin-left: 0;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    cursor: pointer;
+    padding: 0.4rem;
+}
+
+.item:hover{
+    background-color:  rgba(126, 126, 255, 0.163);
 }
 
 .item h4{
