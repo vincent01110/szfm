@@ -25,9 +25,15 @@ export async function getProductsByName(name) {
     return result[0]
 }
 
-export async function getProductsByCategory(category) {
+export async function getProductsByCategory(category, limit) {
+    if(limit === 0){
     const result = await pool.query(`SELECT * FROM product WHERE product.category LIKE ?`, [category]);
     return result[0]
+    } else {
+        const result = await pool.query(`SELECT * FROM product WHERE product.category LIKE ? LIMIT ? OFFSET 0`, [category, +limit]);
+        return result[0]
+    }
+    
 }
 
 export async function getDiscounts() {

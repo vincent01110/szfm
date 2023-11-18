@@ -1,6 +1,7 @@
 .panel{
-    width: 15%;
     height: 100%;
+    display: inline-flex;
+    margin-right: 0.5rem;
 }
 
 .list{
@@ -21,4 +22,13 @@
     color: white;
     font-weight: bolder;
     cursor: pointer;
+    padding-right: 0.5rem;
+    
+}
+
+.active{
+    background: linear-gradient(to right, red 0.3rem, red 0.3rem) no-repeat;
+    background-size: 0.3rem;
+    background-position: right;
+    transition: 200ms ease-in-out;
 }

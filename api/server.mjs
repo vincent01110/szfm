@@ -98,14 +98,18 @@ app.get('/products/name/:name', async (req, res) => {
 
 app.get('/products/category/:category', async (req, res) => {
     try {
+        let limit = 0;
+        if (req.query.limit) limit = +req.query.limit;
+
         const category = req.params.category
-        const products = await getProductsByCategory(category)
+        const products = await getProductsByCategory(category, limit)
         let l = []
         for (let i = 0; i < products.length; i++) {
             products[i]['discountedPrice'] = calculateDiscount(products[i], await getDiscount(products[i].discount_id))
             l.push(products[i])
         }
         res.send(l)
+
     } catch (err) {
         writeToLogFile(`/products/category/:category -> Error fetching: ${err}`);
         res.status(500).send('Internal Server Error');
