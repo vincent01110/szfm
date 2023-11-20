@@ -19,6 +19,11 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Megnézzük, hogy megnyomás után a helyes útvonalra mutat-e a gomb.
   - **Expected Outcome**: A komponens a helyes útvonalra mutat.
 
+**Test Case 4:**
+  - **Description**: Admin felület, admin-products Button komponens gombok megfelelő működése.
+  - **Steps to Reproduce**: Mockoljuk a gombok működését és szimuláljuk ezeket egy ablakban.
+  - **Expected Outcome**: A gombok helyesen működnek és a megfelelő funkciót látják el.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
@@ -26,6 +31,7 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 | 2023-11-20 | Admin-Dashboard| Rendering      | FAIL    |
 | 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
+| 2023-11-20 | Buttons| Mocking the function  | PASS    |
 
 
 ## Issues and Observations
