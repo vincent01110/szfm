@@ -14,12 +14,19 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Mockolással érjük volna el az API-t a megfelelő rendelerelés érdekében.
   - **Expected Outcome**: A komponens megfelelően renderelődik és tartalmazza a megfelelő szövegeket vagy elemeket.
 
+ **Test Case 3:**
+  - **Description**: Admin felület, CollectionsToolbar add button helyes útvonala megnyomás után.
+  - **Steps to Reproduce**: Megnézzük, hogy megnyomás után a helyes útvonalra mutat-e a gomb.
+  - **Expected Outcome**: A komponens a helyes útvonalra mutat.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
 |------------|----------------|------------------|---------|
 | 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 | 2023-11-20 | Admin-Dashboard| Rendering      | FAIL    |
+| 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
+
 
 ## Issues and Observations
 **Issue: Collections-table**
