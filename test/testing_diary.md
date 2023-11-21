@@ -34,6 +34,11 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Komponens és termékek mockolása majd ezeknek ellenőrzése, hogy renderelődik-e, majd törlés gomb működésének ellenőrzése.
   - **Expected Outcome**: Termékek helyesen betöltenek és működik a törlés gomb.
 
+**Test Case 6:**
+  - **Description**: Cart komponens megfelelő renderelése, "üres kosár" üzenet megjelenik-e üres kosár esetén, üres kosárnál a megrendelés gomb "ne működjön".
+  - **Steps to Reproduce**: Komponens és termékek mockolása majd ezeknek ellenőrzése, hogy renderelődik-e, majd az "üres kosár" ellenőrzése és a "megrendelés" gomb                             üres kosár esetén ne küldje el a "semmit".
+  - **Expected Outcome**: Termékek helyesen betöltenek és látható az "üres kosár" felirat, valamint "megrendelés" gomb üres kosár esetén nem küldi el a rendelést.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
@@ -41,9 +46,10 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 | 2023-11-20 | Admin-Dashboard| Rendering      | FAIL    |
 | 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
-| 2023-11-20 | Buttons| Mocking the function  | PASS    |
-| 2023-11-21 | Products| Mocking the products  | PASS    |
-| 2023-11-21 | Cart items | Mocking the items  | PASS    |
+| 2023-11-20 | Buttons| Mocking function  | PASS    |
+| 2023-11-21 | Products| Mocking products  | PASS    |
+| 2023-11-21 | Cart items | Mocking items  | PASS    |
+| 2023-11-21 | Cart | Mocking cart and handle empty cart  | PASS    |
 
 
 ## Issues and Observations
