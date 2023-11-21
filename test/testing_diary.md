@@ -29,6 +29,11 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Komponens és termékek mockolása majd ezeknek ellenőrzése, hogy renderelődik-e.
   - **Expected Outcome**: Termékek helyesen betöltenek és működik a kiválasztás szimulálása.
 
+**Test Case 6:**
+  - **Description**: App, cart, cart-item komponensének renderelése és törlés gomb működésének ellenőrzése.
+  - **Steps to Reproduce**: Komponens és termékek mockolása majd ezeknek ellenőrzése, hogy renderelődik-e, majd törlés gomb működésének ellenőrzése.
+  - **Expected Outcome**: Termékek helyesen betöltenek és működik a törlés gomb.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
@@ -38,6 +43,7 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
 | 2023-11-20 | Buttons| Mocking the function  | PASS    |
 | 2023-11-21 | Products| Mocking the products  | PASS    |
+| 2023-11-21 | Cart items | Mocking the items  | PASS    |
 
 
 ## Issues and Observations
