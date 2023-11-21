@@ -24,6 +24,11 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Mockoljuk a gombok működését és szimuláljuk ezeket egy ablakban.
   - **Expected Outcome**: A gombok helyesen működnek és a megfelelő funkciót látják el.
 
+**Test Case 5:**
+  - **Description**: Admin-products, product-table, ProductTable komponensének megfelelő renderelése mock-val.
+  - **Steps to Reproduce**: Komponens és termékek mockolása majd ezeknek ellenőrzése, hogy renderelődik-e.
+  - **Expected Outcome**: Termékek helyesen betöltenek és működik a kiválasztás szimulálása.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
@@ -32,6 +37,7 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-20 | Admin-Dashboard| Rendering      | FAIL    |
 | 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
 | 2023-11-20 | Buttons| Mocking the function  | PASS    |
+| 2023-11-21 | Products| Mocking the products  | PASS    |
 
 
 ## Issues and Observations
