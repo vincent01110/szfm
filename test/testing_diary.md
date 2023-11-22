@@ -19,6 +19,45 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Megnézzük, hogy megnyomás után a helyes útvonalra mutat-e a gomb.
   - **Expected Outcome**: A komponens a helyes útvonalra mutat.
 
+**Test Case 4:**
+  - **Description**: App felület, cart, cart-item, CartItem komponens funkcionalitás és renderelés ellenőrzése.
+  - **Steps to Reproduce**: Mockolunk egy item komponenst, hogy betöltődik-e majd a "törlés" gomb működését teszteljük.
+  - **Expected Outcome**: A komponens helyesen betöltődik és működik a törlés gomb.
+
+**Test Case 5:**
+  - **Description**: Home felület, categories, CategoriesPanel komponensének működésének tesztje.
+  - **Steps to Reproduce**: Meghívjuk a setActive függvényt, hogy megnézzük aktívvá teszi-e a kiválasztott ketegóriákat.
+  - **Expected Outcome**: A függvény megfelelően választja ki a kategóriákat.
+
+**Test Case 6:**
+  - **Description**: Home felület, Footer komponens tesztje.
+  - **Steps to Reproduce**: Kontakt információk és logó ellenőrzése.
+  - **Expected Outcome**: A kontakt információk helyesek és megjelenik a logó.
+
+**Test Case 7:**
+  - **Description**: Home felület, search-bar, SuggestioItem komponens teszt.
+  - **Steps to Reproduce**: Elkezdünk gépelni és lehetséges találatot dob ki a rendszer. Erre mockolunk egy terméket létrehozunk és imitáljuk a szóközt, hogy                                   dobjon találatot.
+  - **Expected Outcome**: Elvárt módon találatot ajánl.
+
+**Test Case 8:**
+  - **Description**: Home felület, most-searched, MostSearchedProduct komponens teszt.
+  - **Steps to Reproduce**: Mockoljuk a terméket, hogy megjelenik-e megfelelően.
+  - **Expected Outcome**: Megfelelően megjelenik a termék.
+
+**Test Case 9:**
+  - **Description**: Product felület, product-desc, ProductDesc komponens teszt.
+  - **Steps to Reproduce**: Leellenőrizzük, hogy a komponens rendelkezik-e az értékekkel, és a töltő animáció megfelelően megjelenik töltés közben.
+  - **Expected Outcome**: A komponens tartalmazza az információkat és megjelenik az animáció.
+
+**Test Case 10:**
+  - **Description**: UI felület, Button komponens tesztje.
+  - **Steps to Reproduce**: Ellenőrizzük, hogy a gomb betöltődött-e a megfelelő osztállyal és értékekkel.
+  - **Expected Outcome**: Megfelelően működik.
+
+**Test Case 11:**
+  - **Description**: UI felület, Card komponens tesztje.
+  - **Steps to Reproduce**: Ellenőrizzük, hogy a card betöltődött-e és kattintásra dob-e errort.
+  - **Expected Outcome**: Megfelelően működik.
 
 ## Test Results
 
@@ -27,6 +66,14 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-06 | Collections-Table| Rendering      | FAIL    |
 | 2023-11-20 | Admin-Dashboard| Rendering      | FAIL    |
 | 2023-11-20 | CollectionsToolbar| Pahtname matches      | PASS    |
+| 2023-11-22 | CartItem | Rendering and button test  | PASS    |
+| 2023-11-22 | CategoriesPanel | setActive function | PASS    |
+| 2023-11-22 | Footer | Contract and logo | PASS    |
+| 2023-11-22 | SuggestionItem | Mock suggestion | PASS    |
+| 2023-11-22 | MostSearchedProduct | Rendering | PASS    |
+| 2023-11-22 | ProductDesc | Values and loading | PASS    |
+| 2023-11-22 | Button | Rendering | PASS  |
+| 2023-11-22 | Card | Rendering | PASS  |
 
 ## Issues and Observations
 **Issue: Collections-table**
