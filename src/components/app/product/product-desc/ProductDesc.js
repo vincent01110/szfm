@@ -26,7 +26,7 @@ const ProductDesc = (props) => {
                 </div>
             ))}
         </div> : 
-        <div className={style.spinnerDiv}>
+        <div className={style.spinnerDiv} data-testid="loading-spinner">
             <ProgressSpinner style={{ width: '30rem', height: '20rem' }} strokeWidth="8" fill="white" animationDuration="1s" />
         </div>}
     </Card>;
