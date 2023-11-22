@@ -6,4 +6,7 @@ export default {
     transform: {
         '^.+\\.jsx?$': 'babel-jest',
     },
+    "moduleNameMapper": {
+        "^aliases/(.*)$": "<rootDir>/path/to/aliases/$1"
+    }
 };
