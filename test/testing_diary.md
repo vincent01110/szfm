@@ -59,6 +59,16 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
   - **Steps to Reproduce**: Ellenőrizzük, hogy a card betöltődött-e és kattintásra dob-e errort.
   - **Expected Outcome**: Megfelelően működik.
 
+**Test Case 12:**
+- **Description**: UI felület, Kosár kontextus funkcionalitásának tesztje.
+- **Steps to Reproduce**:
+    * Kattintás az "Add to Cart" gombra a teszt komponensben.
+    * Kattintás a "Remove from Cart" gombra a teszt komponensben.
+    * Ellenőrzés, hogy van-e elem a kosárban (hasItem funkció).
+    * Ellenőrzés, hogy a kosárban lévő elemek száma a várt értékkel egyezik-e.
+    * Ellenőrzés, hogy a kosárban lévő elemek összértéke a várt értékkel egyezik-e (getTotalPrice funkció).
+- **Expected Outcome**: A kosár kontextus funkciói megfelelően működnek.
+
 ## Test Results
 
 | Date       | Component      | Test Case        | Outcome |
@@ -74,6 +84,7 @@ Ezen tesztterv célja az alkalmazás komponenseinek egységtesztelése. A teszte
 | 2023-11-22 | ProductDesc | Values and loading | PASS    |
 | 2023-11-22 | Button | Rendering | PASS  |
 | 2023-11-22 | Card | Rendering | PASS  |
+| 2023-11-23 | CartProvider          | Add, remove, total price         | PASS    |
 
 ## Issues and Observations
 **Issue: Collections-table**
