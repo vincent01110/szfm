@@ -1,43 +1,49 @@
-.container{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-}
-.submitButton{
-    margin: auto;
+.container {
+    display: flex;  /* Konténer elemeinek egymás mellett való elhelyezése */
+    align-content: center;  /* Tartalom függőleges középre igazítása */
+    justify-content: center;  /* Tartalom vízszintes középre igazítása */
+    width: 100%;  /* Szélesség 100%-ra állítása */
+    height: 100vh;  /* Teljes magasság beállítása (100% a nézetablak magasságához képest) */
 }
 
-.formDiv > form > *{
-    display: block;
-    font-size: large;
+/* Stílusok a "Log In" gombhoz */
+.submitButton {
+    margin: auto;  /* Margó beállítása középre igazításhoz */
 }
 
-.formDiv > h1{
-    text-align: center;
-    margin-bottom: 2rem;
+/* Stílusok a form tartalmának elemeihez */
+.formDiv > form > * {
+    display: block;  /* Elemek blokk formában való megjelenítése */
+    font-size: large;  /* Betűméret beállítása */
 }
 
+/* Stílusok a címhez */
+.formDiv > h1 {
+    text-align: center;  /* Szöveg igazítása középre */
+    margin-bottom: 2rem;  /* Alsó margó beállítása */
+}
 
+/* Stílusok az input mezőkhöz */
 .inputField {
-    padding: 0.5rem;
-    border-radius: 30px;
-    outline: none;
-    border: 1px solid #FFBA08;
-    margin: 1rem;
+    padding: 0.5rem;  /* Belső tér beállítása */
+    border-radius: 30px;  /* Sarokkerekítés beállítása */
+    outline: none;  /* Keret eltávolítása */
+    border: 1px solid #FFBA08;  /* Szegély beállítása */
+    margin: 1rem;  /* Margó beállítása */
 }
 
-.invalid{
-    border-color: red;
-    border-width: 3px;
+/* Stílusok érvénytelen állapotokhoz */
+.invalid {
+    border-color: red;  /* Keret színének beállítása érvénytelen állapotban */
+    border-width: 3px;  /* Keret vastagságának beállítása érvénytelen állapotban */
 }
 
-.error{
-    background-color: rgb(255, 73, 73);
-    text-align: center;
-    padding: 1rem;
-    width: fit-content;
-    margin: auto;
-    color: white;
+/* Stílusok az API hibaüzenetekhez */
+.error {
+    background-color: rgb(255, 73, 73);  /* Háttérszín beállítása */
+    text-align: center;  /* Szöveg igazítása középre */
+    padding: 1rem;  /* Belső tér beállítása */
+    width: fit-content;  /* Szélesség automatikus méretre állítása */
+    margin: auto;  /* Középre igazítás */
+    color: white;  /* Szövegszín beállítása */
 }
