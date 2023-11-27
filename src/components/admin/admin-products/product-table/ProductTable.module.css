@@ -1,22 +1,24 @@
-.container{
-    max-width: 90%;
-    width: 60%;
-    min-height: 30rem;
+.container {
+    max-width: 90%;  /* Legnagyobb szélesség beállítása a tartálynak */
+    width: 60%;  /* Szélesség beállítása a tartálynak */
+    min-height: 30rem;  /* Minimális magasság beállítása a tartálynak */
 }
 
-.row:focus{
-    background-color: #ffb90860;
-    color: #FFBA08;
-    font-weight: bolder;
-}
-.row:hover{
-    background-color: #ffb90860;
+/* Stílusok a sorokhoz fókusz esetén */
+.row:focus {
+    background-color: #ffb90860;  /* Háttérszín beállítása fókusz esetén */
+    color: #FFBA08;  /* Szövegszín beállítása fókusz esetén */
+    font-weight: bolder;  /* Vastag betűstílus beállítása fókusz esetén */
 }
 
-.cell{
-    padding: 0.6rem;
+.row:hover {
+    background-color: #ffb90860;  /* Háttérszín beállítása hover esetén */
 }
 
-.paginator > *{
-    margin: 1rem;
+.cell {
+    padding: 0.6rem;  /* Térköz beállítása a celláknál */
+}
+
+.paginator > * {
+    margin: 1rem;  /* Margó beállítása a paginator elemeihez */
 }
