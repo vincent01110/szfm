@@ -1,87 +1,93 @@
-.buttons{
-    width: 60%;
-    margin: 1rem auto;
-    display: flex;
-    justify-content: space-around;
+.buttons {
+    width: 60%;  /* A gombok tartományának szélessége */
+    margin: 1rem auto;  /* Külső margók beállítása */
+    display: flex;  /* Flexbox elrendezés használata */
+    justify-content: space-around;  /* Az elemek közötti tér beállítása az elrendezés során */
 }
 
-.add, .delete, .edit{
-    width: 5rem;
-    height: 3rem;
-    border-radius: 10px;
-    margin: auto;
+/* Stílusok a gombokhoz */
+.add, .delete, .edit {
+    width: 5rem;  /* Gombok szélességének beállítása */
+    height: 3rem;  /* Gombok magasságának beállítása */
+    border-radius: 10px;  /* Gombok sarokkerekítése */
+    margin: auto;  /* Automatikus középre igazítás */
 }
 
-.add{
-    font-weight: bolder;
+.add {
+    font-weight: bolder;  /* Vastag betűstílus a "Add" gombhoz */
 }
 
-.delete{
-    background-color: #D00000;
+.delete {
+    background-color: #D00000;  /* Háttérszín beállítása a "Delete" gombhoz */
 }
 
-.edit{
-    background-color: #E85D04;
+.edit {
+    background-color: #E85D04;  /* Háttérszín beállítása az "Edit" gombhoz */
 }
 
-.delete:hover{
+/* Hover állapotok a "Delete" és "Edit" gombokhoz */
+.delete:hover {
     background-color: #cc4646;
 }
 
-.edit:hover{
+.edit:hover {
     background-color: #de8248;
 }
 
-
-
-[class~="p-confirm-popup"]{
-    background-color: rgb(250, 195, 195);
-    color: red;
-    padding: 1rem;
-    border-radius: 5px;
+/* Stílusok a PrimeReact ConfirmPopup-hoz */
+[class~="p-confirm-popup"] {
+    background-color: rgb(250, 195, 195);  /* Háttérszín beállítása a ConfirmPopup ablaknak */
+    color: red;  /* Szövegszín beállítása */
+    padding: 1rem;  /* Belső tér beállítása */
+    border-radius: 5px;  /* Sarokkerekítés beállítása */
 }
 
-[class~="p-confirm-popup-footer"]{
-    margin-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
-}
-[class~="p-confirm-popup-footer"] > button{
-    margin: 0.2rem;
-    border-radius: 5px;
-    border: none;
-    padding: 0.5rem;
-    width: 4rem;
-    color: white;
-    font-weight: bolder;
-
-}
-[class~="p-confirm-popup-footer"] > button:first-of-type{
-    background-color: #FFBA08;
-}
-[class~="p-confirm-popup-footer"] > button:last-of-type{
-    background-color: red;
+/* Stílusok a PrimeReact ConfirmPopup lábához */
+[class~="p-confirm-popup-footer"] {
+    margin-top: 1rem;  /* Felső margó beállítása a lábnál */
+    display: flex;  /* Flexbox elrendezés használata a lábnál */
+    justify-content: flex-end;  /* Az elemek jobbra igazítása a lábnál */
 }
 
-[class~="p-toast"]{
-    background-color: rgb(255, 236, 236);
-    border-radius: 5px;
-
+/* Stílusok a PrimeReact ConfirmPopup gombjaihoz */
+[class~="p-confirm-popup-footer"] > button {
+    margin: 0.2rem;  /* Margó beállítása a gombok között a lábnál */
+    border-radius: 5px;  /* Sarokkerekítés beállítása a gomboknál */
+    border: none;  /* Keret eltávolítása */
+    padding: 0.5rem;  /* Belső tér beállítása a gomboknál */
+    width: 4rem;  /* Gombok szélességének beállítása */
+    color: white;  /* Szövegszín beállítása */
+    font-weight: bolder;  /* Vastag betűstílus */
 }
 
-[class~="p-toast-icon-close"]{
-    margin: 1rem;
-}
-[class~="p-toast-message-icon"]{
-    width: 2rem;
-    height: 2rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 0.5rem;
-    margin-right: 1rem;
-    color: red;
-    
+/* Stílusok az első PrimeReact ConfirmPopup gombjához */
+[class~="p-confirm-popup-footer"] > button:first-of-type {
+    background-color: #FFBA08;  /* Háttérszín beállítása az első gombhoz */
 }
 
+/* Stílusok az utolsó PrimeReact ConfirmPopup gombjához */
+[class~="p-confirm-popup-footer"] > button:last-of-type {
+    background-color: red;  /* Háttérszín beállítása az utolsó gombhoz */
+}
 
+/* Stílusok a PrimeReact Toast-hoz */
+[class~="p-toast"] {
+    background-color: rgb(255, 236, 236);  /* Háttérszín beállítása a Toast üzenetnek */
+    border-radius: 5px;  /* Sarokkerekítés beállítása */
+}
 
+/* Stílusok a PrimeReact Toast bezáró ikonjához */
+[class~="p-toast-icon-close"] {
+    margin: 1rem;  /* Margó beállítása a bezáró ikonhoz */
+}
+
+/* Stílusok a PrimeReact Toast üzenet ikonjához */
+[class~="p-toast-message-icon"] {
+    width: 2rem;  /* Ikon szélességének beállítása */
+    height: 2rem;  /* Ikon magasságának beállítása */
+    margin-top: auto;  /* Felső margó beállítása */
+    margin-bottom: auto;  /* Alsó margó beállítása */
+    margin-left: 0.5rem;  /* Bal margó beállítása */
+    margin-right: 1rem;  /* Jobb margó beállítása */
+    color: red;  /* Szövegszín beállítása */
+}
