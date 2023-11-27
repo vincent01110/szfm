@@ -1,99 +1,92 @@
-.formCard{
-    width: 40%;
-    margin-top: 3rem;
+/* Stílusok a ProductAdd komponens űrlapjához */
+.formCard {
+    width: 40%;  /* Űrlap szélességének beállítása */
+    margin-top: 3rem;  /* Felső margó beállítása */
 }
 
 .formCard > * {
-    display: block;
+    display: block;  /* Elemek blokk formában való megjelenítése */
 }
 
-.dropdown{
-    border: 1px solid rgba(0, 0, 0, 0.404);
-    border-radius: 10px;
-    padding: 0.6rem;
-    font-size: larger;
-    min-width: 10rem;
-    margin-bottom: 1rem;
+.dropdown {
+    border: 1px solid rgba(0, 0, 0, 0.404);  /* Szegély beállítása */
+    border-radius: 10px;  /* Sarokkerekítés beállítása */
+    padding: 0.6rem;  /* Belső tér beállítása */
+    font-size: larger;  /* Betűméret beállítása */
+    min-width: 10rem;  /* Minimális szélesség beállítása */
+    margin-bottom: 1rem;  /* Alsó margó beállítása */
 }
 
-
-.items{
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.404);
-    padding: 0.3rem;
-    font-size: large;
+/* Stílusok a PrimeReact Dropdown opcióihoz */
+.items {
+    background-color: white;  /* Háttérszín beállítása */
+    border-radius: 10px;  /* Sarokkerekítés beállítása */
+    border: 1px solid rgba(0, 0, 0, 0.404);  /* Szegély beállítása */
+    padding: 0.3rem;  /* Belső tér beállítása */
+    font-size: large;  /* Betűméret beállítása */
 }
 
-.inputText{
-    min-width: 30rem;
-    height: 3rem;
-    font-size: large;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.404);
-    text-indent: 0.5rem;
-    margin-bottom: 1rem;
+.inputText,
+.inputNumber {
+    min-width: 30rem;  /* Minimális szélesség beállítása */
+    height: 3rem;  /* Magasság beállítása */
+    font-size: large;  /* Betűméret beállítása */
+    border-radius: 10px;  /* Sarokkerekítés beállítása */
+    outline: none;  /* Keret eltávolítása */
+    border: 1px solid rgba(0, 0, 0, 0.404);  /* Szegély beállítása */
+    text-indent: 0.5rem;  /* Szöveg behúzása */
+    margin-bottom: 1rem;  /* Alsó margó beállítása */
 }
 
-.inputNumber{
-    min-width: 30rem;
-    height: 3rem;
-    font-size: large;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.404);
-    text-indent: 0.5rem;
-    margin-bottom: 1rem;
+/* Stílusok a textarea-hoz */
+.textArea {
+    padding: 0.5rem;  /* Belső tér beállítása */
 }
 
-.textArea{
-    padding: 0.5rem;
-
+/* Stílusok az érvénytelen állapotokhoz */
+.invalid {
+    border-color: red;  /* Keret színének beállítása érvénytelen állapotban */
 }
 
-.invalid{
-    border-color: red;
+/* Stílusok a letiltott "Add" gombhoz */
+.addButton:disabled {
+    background-color: gray;  /* Háttérszín beállítása letiltott állapotban */
 }
 
-.addButton:disabled{
-    background-color: gray;
+/* Stílusok az API hibaüzenetekhez */
+.error {
+    background-color: rgb(255, 73, 73);  /* Háttérszín beállítása */
+    text-align: center;  /* Szöveg igazítása középre */
+    padding: 1rem;  /* Belső tér beállítása */
+    width: 90%;  /* Szélesség beállítása */
+    margin: auto;  /* Középre igazítás */
+    color: white;  /* Szövegszín beállítása */
 }
 
-.error{
-    background-color: rgb(255, 73, 73);
-    text-align: center;
-    padding: 1rem;
-    width: 90%;
-    margin: auto;
-    color: white;
+/* Stílusok a PrimeReact Toast-hoz */
+[class~="p-toast"] {
+    background-color: rgb(255, 236, 236);  /* Háttérszín beállítása */
+    border-radius: 5px;  /* Sarokkerekítés beállítása */
 }
 
-
-[class~="p-toast"]{
-    background-color: rgb(255, 236, 236);
-    border-radius: 5px;
-
+/* Stílusok a PrimeReact Toast bezáró ikonjához */
+[class~="p-toast-icon-close"] {
+    margin: 1rem;  /* Margó beállítása a bezáró ikonhoz */
 }
 
-[class~="p-toast-icon-close"]{
-    margin: 1rem;
-}
-[class~="p-toast-message-icon"]{
-    width: 2rem;
-    height: 2rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 0.5rem;
-    margin-right: 1rem;
-    color: red;
-    
-}
-.cancelButton{
-    background-color: #9D0208;
-    margin-left: 1rem;
+/* Stílusok a PrimeReact Toast üzenet ikonjához */
+[class~="p-toast-message-icon"] {
+    width: 2rem;  /* Ikon szélességének beállítása */
+    height: 2rem;  /* Ikon magasságának beállítása */
+    margin-top: auto;  /* Felső margó beállítása */
+    margin-bottom: auto;  /* Alsó margó beállítása */
+    margin-left: 0.5rem;  /* Bal margó beállítása */
+    margin-right: 1rem;  /* Jobb margó beállítása */
+    color: red;  /* Szövegszín beállítása */
 }
 
-
-
-
+/* Stílusok a "Cancel" gombhoz */
+.cancelButton {
+    background-color: #9D0208;  /* Háttérszín beállítása */
+    margin-left: 1rem;  /* Bal margó beállítása */
+}
