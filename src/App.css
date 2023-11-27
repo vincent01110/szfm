@@ -1,38 +1,43 @@
 .App {
-  text-align: center;
+  text-align: center;  /* Szöveg középre igazítása */
 }
 
+/* Stílusok az App logóhoz */
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 40vmin;  /* Logó magasságának beállítása */
+  pointer-events: none;  /* Logó nem interaktívá tétele */
 }
 
+/* Animáció az App logóhoz, csak akkor alkalmazódik, ha a felhasználó nem preferálja a csökkentett mozgást */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear;  /* Logó folyamatos forgatása 20 másodpercig lineárisan */
   }
 }
 
+/* Stílusok az App fejlécéhez */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #282c34;  /* Fejléc háttérszínének beállítása */
+  min-height: 100vh;  /* Fejléc minimális magasságának beállítása a teljes nézetmagasságig */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(10px + 2vmin);  /* Betűméret beállítása a nézetméret alapján */
+  color: white;  /* Szöveg színének beállítása fehérre */
 }
 
+/* Stílusok a linkekhez az App-ban */
 .App-link {
-  color: #61dafb;
+  color: #61dafb;  /* Linkek színének beállítása */
 }
 
+/* Kulcsképek az App logó forgatásának animációjához */
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg);  /* Kezdeti forgási szög */
   }
   to {
-    transform: rotate(360deg);
-  }
+    transform: rotate(360deg);  /* Végleges forgási szög egy teljes kör után (360 fok) */
+}
 }
